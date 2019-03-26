@@ -5,13 +5,31 @@ using UnityEngine.UI;
 
 public class CharacterEmotionController : MonoBehaviour
 {
-    public Sprite[] emotions;
+    public Sprite[] homeView;
+    public Sprite[] streetView;
+    public Sprite[] ballView;
+
+    private Sprite[] _currentView;
+    private string _currentViewString;
+    public string currentView{
+        get {return _currentViewString;}
+        set {
+            if(value == "home"){
+                _currentView = homeView;
+            } else if(value == "street"){
+                _currentView = streetView;
+            } else {
+                _currentView = ballView;
+            }
+            _currentViewString = value;
+        }
+    }
     private int _emotion;
     public int emotion{
         get {return _emotion;}
         set {
             _emotion = value;
-            img.sprite = emotions[value];
+            img.sprite = _currentView[value];
         }
     }
     private int _scale = 100;
@@ -19,7 +37,7 @@ public class CharacterEmotionController : MonoBehaviour
         get {return _scale;}
         set {
             _scale = value;
-            tf.sizeDelta = new Vector2(value, value*3);
+            tf.sizeDelta = new Vector2(value*3, value*3);
         }
     }
     Image img;

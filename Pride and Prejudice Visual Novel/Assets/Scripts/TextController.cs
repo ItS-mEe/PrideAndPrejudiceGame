@@ -14,7 +14,6 @@ public class TextController : MonoBehaviour
     void Start()
     {
         text = this.gameObject.GetComponent<Text>();
-        say("rip x\nmore text!!!1!!!1!1!!!one!");
         if(!PlayerPrefs.HasKey("framesToDelay")){
             PlayerPrefs.SetInt("framesToDelay", 3);
         } else{
@@ -31,6 +30,11 @@ public class TextController : MonoBehaviour
         StartCoroutine(WriteTextCoroutine(words));
     }
 
+    public void sayFastAdvance(string words, GameObject toNotify){
+        text.fontStyle = FontStyle.Normal;
+        StartCoroutine(WriteTextCoroutineFastAdvance(words, toNotify));
+    }
+
     public void think(string words){
         text.fontStyle = FontStyle.Italic;
         StartCoroutine(WriteTextCoroutine(words));
@@ -45,6 +49,18 @@ public class TextController : MonoBehaviour
         }
         expedite = false;
         _isDoneWithText = true;
+    }
+
+    IEnumerator WriteTextCoroutineFastAdvance(string words, GameObject toNotify){
+        _isDoneWithText = false;
+        text.text = "";
+        for(int i = 0; i<=words.Length; i++){
+            text.text = words.Substring(0,i);
+            for(int frame = 0; (frame<framesBetweenEachCharacter && !expedite) || paused; frame++) yield return null;
+        }
+        expedite = false;
+        _isDoneWithText = true;
+        toNotify.SendMessage("onClick");
     }
 
     public void SetDelay(int framesToDelay){

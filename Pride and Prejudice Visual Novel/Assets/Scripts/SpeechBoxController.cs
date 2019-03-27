@@ -36,6 +36,21 @@ public class SpeechBoxController : MonoBehaviour
     void Start(){
         script = GetScript();
         Invoke("moveNext", 1f/24);
+
+        // INITNALIZATION
+        catherine  = Instantiate(catherinePrefab).GetComponent<CharacterEmotionController>();
+        elizabeth  = Instantiate(elizabethPrefab).GetComponent<CharacterEmotionController>();
+        georgiana  = Instantiate(georgianaPrefab).GetComponent<CharacterEmotionController>();
+        jane       = Instantiate(janePrefab).GetComponent<CharacterEmotionController>();
+        lydia      = Instantiate(lydiaPrefab).GetComponent<CharacterEmotionController>();
+        msBingley  = Instantiate(msBingleyPrefab).GetComponent<CharacterEmotionController>();
+        mrBingley  = Instantiate(mrBingleyPrefab).GetComponent<CharacterEmotionController>();
+        mrGardiner = Instantiate(mrGardinerPrefab).GetComponent<CharacterEmotionController>();
+        mrDarcy    = Instantiate(mrDarcyPrefab).GetComponent<CharacterEmotionController>();
+        mrsBennet  = Instantiate(mrsBennetPrefab).GetComponent<CharacterEmotionController>();
+        wickham    = Instantiate(wickhamPrefab).GetComponent<CharacterEmotionController>();
+        mrBennet   = Instantiate(mrBennetPrefab).GetComponent<CharacterEmotionController>();
+        
     }
 
     private void moveNext(){
@@ -62,101 +77,132 @@ public class SpeechBoxController : MonoBehaviour
     }
 
     private IEnumerator GetScript(){
-        // INITNALIZATION
-        catherine  = Instantiate(catherinePrefab).GetComponent<CharacterEmotionController>();
+        //INIT
         catherine .gameObject.SetActive(false);
         catherine .transform.parent = this.transform;
-        elizabeth  = Instantiate(elizabethPrefab).GetComponent<CharacterEmotionController>();
+        ((catherine .transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
+        catherine.scale = 500/3;
         elizabeth .gameObject.SetActive(false);
         elizabeth .transform.parent = this.transform;
-        georgiana  = Instantiate(georgianaPrefab).GetComponent<CharacterEmotionController>();
+        ((elizabeth .transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
+        elizabeth.scale = 500/3;
         georgiana .gameObject.SetActive(false);
         georgiana .transform.parent = this.transform;
-        jane       = Instantiate(janePrefab).GetComponent<CharacterEmotionController>();
+        ((georgiana .transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
+        georgiana.scale = 500/3;
         jane      .gameObject.SetActive(false);
         jane      .transform.parent = this.transform;
-        lydia      = Instantiate(lydiaPrefab).GetComponent<CharacterEmotionController>();
+        ((jane      .transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
+        jane.scale = 500/3;
         lydia     .gameObject.SetActive(false);
         lydia     .transform.parent = this.transform;
-        msBingley  = Instantiate(msBingleyPrefab).GetComponent<CharacterEmotionController>();
+        ((lydia     .transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
+        lydia.scale = 500/3;
         msBingley .gameObject.SetActive(false);
         msBingley .transform.parent = this.transform;
-        mrBingley  = Instantiate(mrBingleyPrefab).GetComponent<CharacterEmotionController>();
+        ((msBingley .transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
+        msBingley.scale = 500/3;
         mrBingley .gameObject.SetActive(false);
         mrBingley .transform.parent = this.transform;
-        mrGardiner = Instantiate(mrGardinerPrefab).GetComponent<CharacterEmotionController>();
+        ((mrBingley .transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
+        mrBingley.scale = 500/3;
         mrGardiner.gameObject.SetActive(false);
         mrGardiner.transform.parent = this.transform;
-        mrDarcy    = Instantiate(mrDarcyPrefab).GetComponent<CharacterEmotionController>();
+        ((mrGardiner.transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
+        mrGardiner.scale = 500/3;
         mrDarcy   .gameObject.SetActive(false);
         mrDarcy   .transform.parent = this.transform;
-        mrsBennet  = Instantiate(mrsBennetPrefab).GetComponent<CharacterEmotionController>();
+        ((mrDarcy   .transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
+        mrDarcy.scale = 500/3;
         mrsBennet .gameObject.SetActive(false);
         mrsBennet .transform.parent = this.transform;
-        wickham    = Instantiate(wickhamPrefab).GetComponent<CharacterEmotionController>();
+        ((mrsBennet .transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
+        mrsBennet.scale = 500/3;
         wickham   .gameObject.SetActive(false);
         wickham   .transform.parent = this.transform;
-        mrBennet   = Instantiate(mrBennetPrefab).GetComponent<CharacterEmotionController>();
+        ((wickham   .transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
+        wickham.scale = 500/3;
         mrBennet  .gameObject.SetActive(false);
         mrBennet  .transform.parent = this.transform;
+        ((mrBennet  .transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
+        mrBennet.scale = 500/3;
 
         // Mr Bingley asks Mr Darcy to go with him to the party
         mrBingley.gameObject.SetActive(true);
+        mrBingley.currentView = "home";
+        mrBingley.emotion = 5;
         backgroundImageController.location = 4;
         characterBox.text = "Mr Bingley"; //Smiling
         textController.say("Hey Darcy, want to go to Tim Cook's social with me? There will be cute girls I swear, and anyways, we are visiting the Apple headquarters in Cupertino anyways.");
         yield return null;
         
+        mrBingley.emotion = 4;
         choiceController.offerChoices("I would rather stay in the hotel and read.", "I will go with you, but only to meet new connections.", "Only if you go as my date.");
         choosing = true;
         yield return null;
       
         if(choice == 1){
             //dialogue for choice 1
+            mrBingley.emotion = 5;
             characterBox.text = "Mr. Bingley"; //Smiling
             textController.say("Reading? You're so old fashioned. Come on. Please. Please. I'll be lonely.");
             yield return null;
 
+            mrBingley.emotion = 4;
             characterBox.text = "Mr. Darcy"; //Normal
             textController.say("Fine. Whatever.");
             yield return null;
 
         } else if (choice == 2) {
             //dialogue for choice 2
+            mrBingley.emotion = 5;
             characterBox.text = "Mr. Bingley"; //Smiling
             textController.say("Yaay!");
             yield return null;
 
         } else {
             //dialogue for choice 3
+            mrBingley.emotion = 7;
             characterBox.text = "Mr. Bingley"; //Confused
             textController.say("What?");
             yield return null;
 
+
             characterBox.text = "Mr. Darcy"; //Normal
+            mrBingley.emotion = 6;
             textController.say("Sorry, I have autocorrect in my brain sometimes.");
             yield return null;
 
+            mrBingley.emotion = 5;
             characterBox.text = "Mr. Bingley"; //Smiling
             textController.say("So are you coming or not?");
             yield return null;
 
+            mrBingley.emotion = 4;
             characterBox.text = "Mr. Darcy"; //Normal
             textController.say("Fine. Whatever.");
             yield return null;
 
         }
 
+        mrBingley.gameObject.SetActive(false);
+
         // SOCIAL PARTY #1
+        ((msBingley  .transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
+        msBingley.gameObject.SetActive(true);
+        msBingley.currentView = "home"; // really ball view ball stuff got put into home view
+        msBingley.emotion = 9;
         backgroundImageController.location = 13;
         characterBox.text = "Miss Bingley"; //Smiling
         textController.say("Hey, Mr. Darcy. You made it. How do you like the party?");
         yield return null;
 
+        msBingley.emotion = 8;
         characterBox.text = "Mr. Darcy"; //Bored
         textController.say("It's ok.");
         yield return null;
 
+        msBingley.emotion = 7;
         characterBox.text = "Miss Bingley"; //Sassy
         textController.say("I know right. Like, there are some people at this party that don't even deserve to be here, am I right? Like, what is wrong with society right now.");
         yield return null;
@@ -165,15 +211,23 @@ public class SpeechBoxController : MonoBehaviour
         textController.say("When I heard about this party I thought only the richest of the rich would come, but now, I'm, like, surrounded by poor peasants.");
         yield return null;
 
+        msBingley.emotion = 6;
         characterBox.text = "Mr. Darcy"; //Bored
         textController.say("Well, yes. Anyways, I have some urgent business with your brother so I  must excuse myself.");
         yield return null;
         //Exit Miss Bingley
+        msBingley.gameObject.SetActive(false);
+
+        //Enter Mr Bingley
+        mrBingley.gameObject.SetActive(true);
+        mrBingley.currentView = "ball";
+        mrBingley.emotion = 3;
 
         characterBox.text = "Mr. Bingley"; //Grinning
         textController.say("So are you enjoying yourself? Isn't this party really nice?");
         yield return null;
 
+        mrBingley.emotion = 2;
         characterBox.text = "Mr. Darcy"; //Bored
         textController.say("It's so-so.");
         yield return null;

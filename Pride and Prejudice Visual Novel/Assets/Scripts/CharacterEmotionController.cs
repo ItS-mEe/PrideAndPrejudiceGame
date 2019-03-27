@@ -22,6 +22,9 @@ public class CharacterEmotionController : MonoBehaviour
                 _currentView = ballView;
             }
             _currentViewString = value;
+            print(_currentViewString);
+            print(homeView[5]);
+            print(_currentView[5]);
         }
     }
     private int _emotion;
@@ -43,7 +46,7 @@ public class CharacterEmotionController : MonoBehaviour
     Image img;
     RectTransform tf;
 
-    void Start()
+    void Awake()
     {
         img = this.gameObject.GetComponent<Image>();
         tf = transform as RectTransform;

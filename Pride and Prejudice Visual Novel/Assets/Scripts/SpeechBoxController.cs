@@ -35,7 +35,7 @@ public class SpeechBoxController : MonoBehaviour
 
     void Start(){
         script = GetScript();
-        Invoke("moveNext", 0.1f);
+        Invoke("moveNext", 1f/24);
     }
 
     private void moveNext(){

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,7 +20,7 @@ public class SpeechBoxController : MonoBehaviour
     mrDarcyPrefab, mrsBennetPrefab, 
     wickhamPrefab, mrBennetPrefab;
 
-    public GameObject 
+    private CharacterEmotionController 
     catherine, elizabeth, 
     georgiana, jane, 
     lydia, msBingley, 
@@ -62,10 +62,51 @@ public class SpeechBoxController : MonoBehaviour
     }
 
     private IEnumerator GetScript(){
+        // INITNALIZATION
+        catherine  = Instantiate(catherinePrefab).GetComponent<CharacterEmotionController>();
+        catherine .gameObject.SetActive(false);
+        catherine .transform.parent = this.transform;
+        elizabeth  = Instantiate(elizabethPrefab).GetComponent<CharacterEmotionController>();
+        elizabeth .gameObject.SetActive(false);
+        elizabeth .transform.parent = this.transform;
+        georgiana  = Instantiate(georgianaPrefab).GetComponent<CharacterEmotionController>();
+        georgiana .gameObject.SetActive(false);
+        georgiana .transform.parent = this.transform;
+        jane       = Instantiate(janePrefab).GetComponent<CharacterEmotionController>();
+        jane      .gameObject.SetActive(false);
+        jane      .transform.parent = this.transform;
+        lydia      = Instantiate(lydiaPrefab).GetComponent<CharacterEmotionController>();
+        lydia     .gameObject.SetActive(false);
+        lydia     .transform.parent = this.transform;
+        msBingley  = Instantiate(msBingleyPrefab).GetComponent<CharacterEmotionController>();
+        msBingley .gameObject.SetActive(false);
+        msBingley .transform.parent = this.transform;
+        mrBingley  = Instantiate(mrBingleyPrefab).GetComponent<CharacterEmotionController>();
+        mrBingley .gameObject.SetActive(false);
+        mrBingley .transform.parent = this.transform;
+        mrGardiner = Instantiate(mrGardinerPrefab).GetComponent<CharacterEmotionController>();
+        mrGardiner.gameObject.SetActive(false);
+        mrGardiner.transform.parent = this.transform;
+        mrDarcy    = Instantiate(mrDarcyPrefab).GetComponent<CharacterEmotionController>();
+        mrDarcy   .gameObject.SetActive(false);
+        mrDarcy   .transform.parent = this.transform;
+        mrsBennet  = Instantiate(mrsBennetPrefab).GetComponent<CharacterEmotionController>();
+        mrsBennet .gameObject.SetActive(false);
+        mrsBennet .transform.parent = this.transform;
+        wickham    = Instantiate(wickhamPrefab).GetComponent<CharacterEmotionController>();
+        wickham   .gameObject.SetActive(false);
+        wickham   .transform.parent = this.transform;
+        mrBennet   = Instantiate(mrBennetPrefab).GetComponent<CharacterEmotionController>();
+        mrBennet  .gameObject.SetActive(false);
+        mrBennet  .transform.parent = this.transform;
+
         // Mr Bingley asks Mr Darcy to go with him to the party
+        mrBingley.gameObject.SetActive(true);
         backgroundImageController.location = 4;
         characterBox.text = "Mr Bingley"; //Smiling
         textController.say("Hey Darcy, want to go to Tim Cook's social with me? There will be cute girls I swear, and anyways, we are visiting the Apple headquarters in Cupertino anyways.");
+        yield return null;
+        
         choiceController.offerChoices("I would rather stay in the hotel and read.", "I will go with you, but only to meet new connections.", "Only if you go as my date.");
         choosing = true;
         yield return null;
@@ -236,6 +277,8 @@ public class SpeechBoxController : MonoBehaviour
 
         characterBox.text = "Miss Bingley"; //Annoyed
         textController.say("I've noticed you've been staring at that Elizabeth girl in all the parties recently. Explain yourself.");
+        yield return null;
+        
         choiceController.offerChoices("I actually have really started to admire her.", "No, I have not been. I don't know what you are talking about?", "Her face is like one one of those oddly satisfying gifs. Its, well, oddly satisfying.");
         choosing = true;
         yield return null;
@@ -463,6 +506,8 @@ public class SpeechBoxController : MonoBehaviour
         characterBox.text = "Mr. Darcy"; //Angry
         characterBox.fontStyle = FontStyle.Italic;
         textController.think("I should...");
+        yield return null;
+        
         choiceController.offerChoices("ignore him and go about my business.", "confront Wickham and take Elizabeth.", "challenge him to a fight like Logan Paul and KSI.");
         choosing = true;
         yield return null;
@@ -527,6 +572,8 @@ public class SpeechBoxController : MonoBehaviour
 
         characterBox.text = "Darcy Thoughts"; //Blushing
         textController.think("Should I...");
+        yield return null;
+        
         choiceController.offerChoices("ask her to dance?", "wait until the next dance?", "teach her about the communist ideals of Karl Marx?");
         choosing = true;
         yield return null;
@@ -748,6 +795,8 @@ public class SpeechBoxController : MonoBehaviour
         backgroundImageController.location = 4;
         characterBox.text = "Mr. Bingley"; //Smiling
         textController.say("Darcy, I'm excited. That woman Jane, she's amazing. She's smart, sweet, pretty, kind, and funny. I'm going to ask her to be my wife. What do you think?");
+        
+        yield return null;
         choiceController.offerChoices("Wait, but I was going to do that.", "That is greatest news I have ever heard come out of your mouth.", "Don't do it, think about your future.");
         choosing = true;
         yield return null;
@@ -910,6 +959,8 @@ public class SpeechBoxController : MonoBehaviour
 
         characterBox.text = "Darcy Thoughts"; //Normal
         textController.think("But what should I say when I propose?");
+        yield return null;
+        
         choiceController.offerChoices("Despite the fact that you are in a much lower position in life, don't have very much money at all, and no social standing, I love you. Please marry me.", "I sincerely love you. Please marry me.", "The only reason I'm asking to marry you is I have always wanted to hug someone else instead of hugging Mr. Teddy the teddy bear as a substitute.");
         choosing = true;
         yield return null;
@@ -1130,6 +1181,8 @@ public class SpeechBoxController : MonoBehaviour
 
         characterBox.text = "Darcy Thoughts"; //Normal
         textController.think("Oh no, what do I do?");
+        yield return null;
+        
         choiceController.offerChoices("Ask: What's wrong?", "Ignore her.", "I know it's really sad that a 23 Jump Street is not coming out, but there is no need to cry about it.");
         choosing = true;
         yield return null;
@@ -1243,6 +1296,8 @@ public class SpeechBoxController : MonoBehaviour
 
         characterBox.text = "Mr. Wickham"; //Closed
         textController.say("Alright I'll cut you a deal. If I get two hundred thousand dollars and fifty thousand a year I will marry the girl.");
+        yield return null;
+        
         choiceController.offerChoices("Well...Alright...People already know of your elopement anyways. It will save everyone face if you get married.", "I will give you only one hundred thousand dollars, but still include your other portion.", "Or we put aside the money, and I can set you up with with a private meeting with Pewdiepie.");
         choosing = true;
         yield return null;
@@ -1320,6 +1375,8 @@ public class SpeechBoxController : MonoBehaviour
 
         characterBox.text = "Mr. Bingley"; //Smiling
         textController.say("But I literally have nothing prepared to propose to her. What would I do?");
+        yield return null;
+        
         choiceController.offerChoices("Sneak up behind hear, cover her eyes, and whisper in her ear 'You will marry me.'", "Tell her how you sincerely feel and propose to her. I am sure she will accept.", "Tell her you have a special surprise set up in another location. Ask her to cover her eyes and then ditch her.");
         choosing = true;
         yield return null;
@@ -1473,6 +1530,8 @@ public class SpeechBoxController : MonoBehaviour
 
         characterBox.text = "Mr. Darcy"; //Normal
         textController.say("Miss Elizabeth Bennet, not long ago I proposed to you and told you how much I loved you and now...");
+        yield return null;
+        
         choiceController.offerChoices("I find you really annoying, honestly. How can your emotions seriously have changed so much after one email where you can't even see me?", "Frankly, I don't know what to say.", "my feelings are still unchanged. *Gets down on one knee* Will you marry me?");
         choosing = true;
         yield return null;

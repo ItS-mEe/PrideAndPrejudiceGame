@@ -12,6 +12,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: CatherineDeBourgh
       objectReference: {fileID: 0}
+    - target: {fileID: 1962518431581418315, guid: 76968813b24e34f148f4acfa9de42eb5,
+        type: 3}
+      propertyPath: homeView.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962518431581418315, guid: 76968813b24e34f148f4acfa9de42eb5,
+        type: 3}
+      propertyPath: homeView.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 890daa6d79da34679973856e9cea4210,
+        type: 3}
+    - target: {fileID: 1962518431581418315, guid: 76968813b24e34f148f4acfa9de42eb5,
+        type: 3}
+      propertyPath: homeView.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: ede2a1d47f1af4699af5fb355d485c69,
+        type: 3}
+    - target: {fileID: 1962518431581418315, guid: 76968813b24e34f148f4acfa9de42eb5,
+        type: 3}
+      propertyPath: homeView.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: b9a5e13f029fa445a87b8276703daac4,
+        type: 3}
     - target: {fileID: 1962518431581418314, guid: 76968813b24e34f148f4acfa9de42eb5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -95,7 +118,7 @@ PrefabInstance:
     - target: {fileID: 1962518431581418314, guid: 76968813b24e34f148f4acfa9de42eb5,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1962518431581418314, guid: 76968813b24e34f148f4acfa9de42eb5,
         type: 3}
@@ -105,7 +128,7 @@ PrefabInstance:
     - target: {fileID: 1962518431581418314, guid: 76968813b24e34f148f4acfa9de42eb5,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1962518431581418314, guid: 76968813b24e34f148f4acfa9de42eb5,
         type: 3}
@@ -115,36 +138,13 @@ PrefabInstance:
     - target: {fileID: 1962518431581418314, guid: 76968813b24e34f148f4acfa9de42eb5,
         type: 3}
       propertyPath: m_Pivot.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1962518431581418316, guid: 76968813b24e34f148f4acfa9de42eb5,
         type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: ede2a1d47f1af4699af5fb355d485c69,
-        type: 3}
-    - target: {fileID: 1962518431581418315, guid: 76968813b24e34f148f4acfa9de42eb5,
-        type: 3}
-      propertyPath: homeView.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1962518431581418315, guid: 76968813b24e34f148f4acfa9de42eb5,
-        type: 3}
-      propertyPath: homeView.Array.data[0]
-      value: 
-      objectReference: {fileID: 21300000, guid: 890daa6d79da34679973856e9cea4210,
-        type: 3}
-    - target: {fileID: 1962518431581418315, guid: 76968813b24e34f148f4acfa9de42eb5,
-        type: 3}
-      propertyPath: homeView.Array.data[1]
-      value: 
-      objectReference: {fileID: 21300000, guid: ede2a1d47f1af4699af5fb355d485c69,
-        type: 3}
-    - target: {fileID: 1962518431581418315, guid: 76968813b24e34f148f4acfa9de42eb5,
-        type: 3}
-      propertyPath: homeView.Array.data[2]
-      value: 
-      objectReference: {fileID: 21300000, guid: b9a5e13f029fa445a87b8276703daac4,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76968813b24e34f148f4acfa9de42eb5, type: 3}

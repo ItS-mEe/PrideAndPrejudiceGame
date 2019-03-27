@@ -246,14 +246,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9811321, g: 0.5507298, b: 0.90209013, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 9febd4e60940f2846b70462da9435a39, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -809,30 +809,30 @@ MonoBehaviour:
   characterBox: {fileID: 83079252}
   backgroundImageController: {fileID: 1392566022}
   choiceController: {fileID: 1304518550}
-  catherinePrefab: {fileID: 0}
-  elizabethPrefab: {fileID: 0}
-  georgianaPrefab: {fileID: 0}
-  janePrefab: {fileID: 0}
-  lydiaPrefab: {fileID: 0}
-  msBingleyPrefab: {fileID: 0}
-  mrBingleyPrefab: {fileID: 0}
-  mrGardinerPrefab: {fileID: 0}
-  mrDarcyPrefab: {fileID: 0}
-  mrsBennetPrefab: {fileID: 0}
-  wickhamPrefab: {fileID: 0}
-  mrBennetPrefab: {fileID: 0}
-  catherine: {fileID: 0}
-  elizabeth: {fileID: 0}
-  georgiana: {fileID: 0}
-  jane: {fileID: 0}
-  lydia: {fileID: 0}
-  msBingley: {fileID: 0}
-  mrBingley: {fileID: 0}
-  mrGardiner: {fileID: 0}
-  mrDarcy: {fileID: 0}
-  mrsBennet: {fileID: 0}
-  wickham: {fileID: 0}
-  mrBennet: {fileID: 0}
+  catherinePrefab: {fileID: 774873655153092658, guid: d4228a60a55a24959ba924bd56e2e1e4,
+    type: 3}
+  elizabethPrefab: {fileID: 8245262777755956931, guid: 100c05b01f63147dd917d6517e6551b7,
+    type: 3}
+  georgianaPrefab: {fileID: 4665181011539412202, guid: 8c0d0baf2416742d79b9879b6e6f8d12,
+    type: 3}
+  janePrefab: {fileID: 4340574489736438704, guid: 2a795d36801874edaaa8fec1aae03656,
+    type: 3}
+  lydiaPrefab: {fileID: 3447782735761910059, guid: 82055dba7846c4ff396b7c85dfc8642b,
+    type: 3}
+  msBingleyPrefab: {fileID: 4230033319798928114, guid: b620c1e9043f44330812840217f76f47,
+    type: 3}
+  mrBingleyPrefab: {fileID: 1888631827235686941, guid: 40489ecb73ced4a58ad374e85692b502,
+    type: 3}
+  mrGardinerPrefab: {fileID: 8699189989797610909, guid: 271a4addbd1ba46198c6ed64e57430e9,
+    type: 3}
+  mrDarcyPrefab: {fileID: 2327722394649723343, guid: 1ada871ff6f6047b993c7dc23c44ae51,
+    type: 3}
+  mrsBennetPrefab: {fileID: 1080937616079939017, guid: c6124b31a72b54b9093ba10c00adb3de,
+    type: 3}
+  wickhamPrefab: {fileID: 5283938165802174709, guid: 4a2860a91b67f4cc5a3ed6b09e31f6d7,
+    type: 3}
+  mrBennetPrefab: {fileID: 8589793545448646066, guid: eb418cbbf5cb14674b18c6444e3c4057,
+    type: 3}
 --- !u!1 &296394873
 GameObject:
   m_ObjectHideFlags: 0
@@ -2558,7 +2558,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -20}
+  m_AnchoredPosition: {x: 0, y: -40}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1879851986
@@ -2574,7 +2574,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2653,7 +2653,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 0.995283, b: 0.995283, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

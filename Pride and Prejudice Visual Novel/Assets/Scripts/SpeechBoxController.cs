@@ -65,7 +65,7 @@ public class SpeechBoxController : MonoBehaviour
         // Mr Bingley asks Mr Darcy to go with him to the party
         backgroundImageController.location = 4;
         characterBox.text = "Mr Bingley"; //Smiling
-        textController.say("Hey Darcy, want to go to the Tim Cook's social with me? There will be cute girls I swear, and anyways, we are visiting the Apple headquarters in Cupertino anyways.");
+        textController.say("Hey Darcy, want to go to Tim Cook's social with me? There will be cute girls I swear, and anyways, we are visiting the Apple headquarters in Cupertino anyways.");
         choiceController.offerChoices("I would rather stay in the hotel and read.", "I will go with you, but only to meet new connections.", "Only if you go as my date.");
         choosing = true;
         yield return null;

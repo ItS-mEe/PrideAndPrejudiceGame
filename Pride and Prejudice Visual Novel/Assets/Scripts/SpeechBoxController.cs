@@ -12,6 +12,7 @@ public class SpeechBoxController : MonoBehaviour
     public ChoiceController choiceController;
     public Transform parentOfCharacters;
     public EffectController effectController;
+    public GameObject email;
     
     public GameObject 
     catherinePrefab, elizabethPrefab, 
@@ -1380,9 +1381,13 @@ public class SpeechBoxController : MonoBehaviour
         yield return null;
         //Email image
 
+        email.SetActive(true);
+
         characterBox.text = "Darcy Thoughts"; //Worried
         textController.think("It can not be written any better than this. Send.");
         yield return null;
+
+        email.SetActive(false);
 
         //BEVERLY HILLS MANSION
         effectController.fadeToBlack(this.gameObject); paused = true;

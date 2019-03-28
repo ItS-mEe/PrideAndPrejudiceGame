@@ -121,9 +121,9 @@ public class SpeechBoxController : MonoBehaviour
         mrGardiner.transform.SetParent(parentOfCharacters);
         ((mrGardiner.transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
         mrGardiner.scale = (int)(scale /3);
-        mrDarcy   .gameObject.SetActive(false);
+        mrDarcy   .gameObject.SetActive(true);
         mrDarcy   .transform.SetParent(parentOfCharacters);
-        ((mrDarcy   .transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
+        ((mrDarcy   .transform) as RectTransform ).anchoredPosition = new Vector3(0, Screen.height, 0);
         mrDarcy.scale = (int)(scale /3);
         mrsBennet .gameObject.SetActive(false);
         mrsBennet .transform.SetParent(parentOfCharacters);
@@ -256,6 +256,9 @@ public class SpeechBoxController : MonoBehaviour
         jane.gameObject.SetActive(true);
         jane.currentView = "ball";
         jane.emotion = 2;
+        ((elizabeth.transform) as RectTransform).anchoredPosition = new Vector3((int)(-scale * 0.25), -30, 0);
+        ((jane.transform) as RectTransform).anchoredPosition = new Vector3(0, -30, 0);
+        ((mrBingley.transform) as RectTransform).anchoredPosition = new Vector3((int)(scale * 0.25), -30, 0);
         characterBox.text = "Mr. Darcy"; //Bored
         textController.say("Who are these people you have brought with you?");
         yield return null;

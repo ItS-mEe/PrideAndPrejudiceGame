@@ -44,7 +44,7 @@ public class EffectController : MonoBehaviour
     }
 
     public void startRoseFilter(){
-        StartCoroutine(startRoseFilterCoroutine());
+        StartCoroutine("startRoseFilterCoroutine");
     }
 
     private IEnumerator startRoseFilterCoroutine(){
@@ -60,6 +60,7 @@ public class EffectController : MonoBehaviour
     }
 
     public void stopRoseFilter(){
+        StopCoroutine("startRoseFilterCoroutine");
         img.color = new Color32(0, 0, 0, 0);
     }
 

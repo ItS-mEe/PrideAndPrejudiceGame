@@ -388,6 +388,7 @@ public class SpeechBoxController : MonoBehaviour
         //SOCIAL PARTY #2
         //Darcy (Content) sees Elizabeth laughing. Rose filter.
         effectController.startRoseFilter();
+        elizabeth.scale = (int)(1.1 * scale / 3);
         elizabeth.gameObject.SetActive(true);
         elizabeth.currentView = "ball";
         elizabeth.emotion = 8;
@@ -396,6 +397,7 @@ public class SpeechBoxController : MonoBehaviour
         yield return null;
 
         effectController.stopRoseFilter();
+        elizabeth.scale = (int)(scale / 3);
         elizabeth.gameObject.SetActive(false);
         msBingley.gameObject.SetActive(true);
         msBingley.currentView = "home";
@@ -513,6 +515,7 @@ public class SpeechBoxController : MonoBehaviour
 
         //Enter Elizabeth. Rose filter.
         effectController.startRoseFilter();
+        elizabeth.scale = (int)(1.1 * scale / 3);
         elizabeth.gameObject.SetActive(true);
         elizabeth.currentView = "home";
         elizabeth.emotion = 4;
@@ -523,6 +526,7 @@ public class SpeechBoxController : MonoBehaviour
         yield return null;
 
         effectController.stopRoseFilter();
+        elizabeth.scale = (int)(scale / 3);
         characterBox.text = "Mr. Darcy"; //Blushing
         characterBox.fontStyle = FontStyle.Normal;
         textController.say("Why are you so flushed? I did not see a taxi pull into the driveway, did you run here?");
@@ -721,6 +725,7 @@ public class SpeechBoxController : MonoBehaviour
         wickham.emotion = 2;
         //Rose filter on Elizabeth
         effectController.startRoseFilter();
+        elizabeth.scale = (int)(1.1 * scale / 3);
         characterBox.text = "Elizabeth Bennet"; //Blushing
         characterBox.fontStyle = FontStyle.Normal;
         textController.say("Hehehe~");
@@ -735,6 +740,7 @@ public class SpeechBoxController : MonoBehaviour
         //DJ record scratching sound effect
 
         effectController.stopRoseFilter();
+        elizabeth.scale = (int)(scale / 3);
         characterBox.text = "Darcy Thoughts"; //Angry
         characterBox.fontStyle = FontStyle.Italic;
         textController.think("I despise that Wickham. The things he did ' I do not want to remember.");
@@ -822,6 +828,7 @@ public class SpeechBoxController : MonoBehaviour
         elizabeth.emotion = 5;
         //Rose filter
         effectController.startRoseFilter();
+        elizabeth.scale = (int)(1.1 * scale / 3);
         characterBox.text = "Darcy Thoughts"; //Blushing
         textController.think("Should I...");
         yield return null;
@@ -957,6 +964,7 @@ public class SpeechBoxController : MonoBehaviour
         //Elizabeth gets smaller
         elizabeth.scale = (int) scale / 3;
         effectController.stopRoseFilter();
+        elizabeth.scale = (int)(1.1 * scale / 3);
         characterBox.text = "Mr. Darcy"; //Awkward
         textController.say("...Uh...yes");
         yield return null;
@@ -1204,10 +1212,12 @@ public class SpeechBoxController : MonoBehaviour
         catherine.emotion = 3;
         //Rose filter on Elizabeth
         effectController.startRoseFilter();
+        elizabeth.scale = (int)(1.1 * scale / 3);
         characterBox.text = "Darcy Thoughts"; //Normal
         textController.think("Why is she still so beautiful after all these months? WHY?");
         yield return null;
         effectController.stopRoseFilter();
+        elizabeth.scale = (int)(1.1 * scale / 3);
         characterBox.text = "Mr. Darcy"; //Normal
         characterBox.fontStyle = FontStyle.Normal;
         textController.say("Hello Aunt Catherine.");
@@ -1434,6 +1444,7 @@ public class SpeechBoxController : MonoBehaviour
         mrGardiner.emotion = 0;
         //Rose filter on Elizabeth
         effectController.startRoseFilter();
+        elizabeth.scale = (int)(1.1 * scale / 3);
         elizabeth.emotion = 17;
         characterBox.text = "Elizabeth Bennet"; //Embarrassed
         textController.say("Um...Hi...Darcy...");
@@ -1445,6 +1456,7 @@ public class SpeechBoxController : MonoBehaviour
         textController.think("She's here. Oh my god, please have a favorable response.");
         yield return null;
         effectController.stopRoseFilter();
+        elizabeth.scale = (int)(1.1 * scale / 3);
         characterBox.text = "Mr. Darcy"; //Normal
         characterBox.fontStyle = FontStyle.Normal;
         textController.say("Hello Miss Elizabeth. A pleasure as always. And who is this respectable man?");
@@ -1527,10 +1539,12 @@ public class SpeechBoxController : MonoBehaviour
         elizabeth.emotion = 6;
         //Rose Filter
         effectController.startRoseFilter();
+        elizabeth.scale = (int)(1.1 * scale / 3);
         characterBox.text = "Mr. Darcy"; //Blushing
         textController.say("*Looks away* No problem.");
         yield return null;
         effectController.stopRoseFilter();
+        elizabeth.scale = (int)(1.1 * scale / 3);
         elizabeth.gameObject.SetActive(false);
 
         //LIVING ROOM
@@ -2020,11 +2034,13 @@ public class SpeechBoxController : MonoBehaviour
         jane.emotion = 2;
         //Rose filter on Elizabeth
         effectController.startRoseFilter();
+        elizabeth.scale = (int)(1.1 * scale / 3);
         characterBox.text = "Darcy Thoughts"; //Blushing
         characterBox.fontStyle = FontStyle.Italic;
         textController.think("As beautiful as ever...Maybe Bingley will not be the only one proposing tonight...");
         yield return null;
         effectController.stopRoseFilter();
+        elizabeth.scale = (int)(1.1 * scale / 3);
 
         mrBingley.emotion = 6;
         jane.emotion = 1;

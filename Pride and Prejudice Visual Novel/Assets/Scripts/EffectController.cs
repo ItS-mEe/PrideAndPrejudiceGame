@@ -42,7 +42,19 @@ public class EffectController : MonoBehaviour
     }
 
     public void startRoseFilter(){
+        StartCoroutine(startRoseFilterCoroutine());
+    }
+
+    private IEnumerator startRoseFilterCoroutine(){
+        byte rate = 2;
+
+        while(img.color.a*255 < 100-rate){
+            img.color = new Color32(255,182,193,(byte)(img.color.a*255 + rate));
+            yield return null;
+        }
+
         img.color = new Color32(255,182,193,100);
+
     }
 
     public void stopRoseFilter(){

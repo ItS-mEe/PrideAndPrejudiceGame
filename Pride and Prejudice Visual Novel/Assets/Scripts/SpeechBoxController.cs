@@ -10,7 +10,8 @@ public class SpeechBoxController : MonoBehaviour
     public Text characterBox; 
     public BackgroundImageController backgroundImageController;
     public ChoiceController choiceController;
-
+    public Transform parentOfCharacters;
+    public EffectController effectController;
     
     public GameObject 
     catherinePrefab, elizabethPrefab, 
@@ -30,7 +31,7 @@ public class SpeechBoxController : MonoBehaviour
 
 
     private IEnumerator script;
-    private bool choosing;
+    private bool paused;
     private int choice;
 
     void Start(){
@@ -57,7 +58,7 @@ public class SpeechBoxController : MonoBehaviour
         script.MoveNext();
     }
     public void onClick(){
-        if(choosing){
+        if(paused){
             return;
         }
 
@@ -71,60 +72,69 @@ public class SpeechBoxController : MonoBehaviour
     }
 
     public void makeChoice(int choice){
-        choosing = false;
+        paused = false;
         this.choice = choice;
         this.onClick();
+    }
+
+    public void transitionDone(){
+        paused = false;
+        this.onClick();
+    }
+
+    public void midTransition(){
+        script.MoveNext();
     }
 
     private IEnumerator GetScript(){
         //INIT
         double scale = 1.2 * Screen.height;
         catherine .gameObject.SetActive(false);
-        catherine .transform.parent = this.transform;
+        catherine .transform.SetParent(parentOfCharacters);
         ((catherine .transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
         catherine.scale = (int)(scale/3);
         elizabeth .gameObject.SetActive(false);
-        elizabeth .transform.parent = this.transform;
+        elizabeth .transform.SetParent(parentOfCharacters);
         ((elizabeth .transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
         elizabeth.scale = (int) (scale/3);
         georgiana .gameObject.SetActive(false);
-        georgiana .transform.parent = this.transform;
+        georgiana .transform.SetParent(parentOfCharacters);
         ((georgiana .transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
         georgiana.scale = (int)(scale /3);
         jane      .gameObject.SetActive(false);
-        jane      .transform.parent = this.transform;
+        jane      .transform.SetParent(parentOfCharacters);
         ((jane      .transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
         jane.scale = (int)(scale /3);
         lydia     .gameObject.SetActive(false);
-        lydia     .transform.parent = this.transform;
+        lydia     .transform.SetParent(parentOfCharacters);
         ((lydia     .transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
         lydia.scale = (int)(scale /3);
         msBingley .gameObject.SetActive(false);
-        msBingley .transform.parent = this.transform;
+        msBingley .transform.SetParent(parentOfCharacters);
         ((msBingley .transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
         msBingley.scale = (int)(scale /3);
         mrBingley .gameObject.SetActive(false);
-        mrBingley .transform.parent = this.transform;
+        mrBingley .transform.SetParent(parentOfCharacters);
         ((mrBingley .transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
         mrBingley.scale = (int)(scale /3);
         mrGardiner.gameObject.SetActive(false);
-        mrGardiner.transform.parent = this.transform;
+        mrGardiner.transform.SetParent(parentOfCharacters);
         ((mrGardiner.transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
         mrGardiner.scale = (int)(scale /3);
         mrDarcy   .gameObject.SetActive(false);
-        mrDarcy   .transform.parent = this.transform;
+        mrDarcy   .transform.SetParent(parentOfCharacters);
         ((mrDarcy   .transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
         mrDarcy.scale = (int)(scale /3);
         mrsBennet .gameObject.SetActive(false);
-        mrsBennet .transform.parent = this.transform;
+        mrsBennet .transform.SetParent(parentOfCharacters);
         ((mrsBennet .transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
         mrsBennet.scale = (int)(scale /3);
         wickham   .gameObject.SetActive(false);
-        wickham   .transform.parent = this.transform;
+        wickham   .transform.SetParent(parentOfCharacters);
         ((wickham   .transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
         wickham.scale = (int)(scale /3);
         mrBennet  .gameObject.SetActive(false);
-        mrBennet  .transform.parent = this.transform;
+        mrBennet  .transform.SetParent(parentOfCharacters);
         ((mrBennet  .transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
         mrBennet.scale = (int)(scale /3);
 
@@ -140,7 +150,7 @@ public class SpeechBoxController : MonoBehaviour
         
         mrBingley.emotion = 4;
         choiceController.offerChoices("I would rather stay in the hotel and read.", "I will go with you, but only to meet new connections.", "Only if you go as my date.");
-        choosing = true;
+        paused = true;
         yield return null;
       
         if(choice == 1){
@@ -190,11 +200,16 @@ public class SpeechBoxController : MonoBehaviour
         mrBingley.gameObject.SetActive(false);
 
         // SOCIAL PARTY #1
+        effectController.fadeToBlack(this.gameObject);
+        yield return null;
+
+        backgroundImageController.location = 13;
+        yield return null;
+
         ((msBingley  .transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
         msBingley.gameObject.SetActive(true);
         msBingley.currentView = "home"; // really ball view ball stuff got put into home view
         msBingley.emotion = 9;
-        backgroundImageController.location = 13;
         characterBox.text = "Miss Bingley"; //Smiling
         textController.say("Hey, Mr. Darcy. You made it. How do you like the party?");
         yield return null;
@@ -346,8 +361,13 @@ public class SpeechBoxController : MonoBehaviour
         mrBingley.gameObject.SetActive(false);
 
         //SOCIAL PARTY #2
+        effectController.fadeToBlack(this.gameObject);
+        yield return null;
+
         backgroundImageController.location = 14;
+        yield return null;
         //Darcy (Content) sees Elizabeth laughing. Rose filter.
+        effectController.startRoseFilter();
         elizabeth.gameObject.SetActive(true);
         elizabeth.currentView = "ball";
         elizabeth.emotion = 8;
@@ -356,6 +376,7 @@ public class SpeechBoxController : MonoBehaviour
         textController.think("Wow, Mr. Bingley was right. Elizabeth is really pretty.");
         yield return null;
 
+        effectController.stopRoseFilter();
         msBingley.gameObject.SetActive(true);
         msBingley.currentView = "home";
         msBingley.emotion = 3;
@@ -376,7 +397,7 @@ public class SpeechBoxController : MonoBehaviour
         yield return null;
         choiceController.offerChoices("I actually have really started to admire her.", "No, I have not been. I don't know what you are talking about?", "Her face is like one one of those oddly satisfying gifs. Its, well, oddly satisfying.");
         msBingley.emotion = 2;
-        choosing = true;
+        paused = true;
         yield return null;
 
         if (choice == 1)
@@ -437,7 +458,10 @@ public class SpeechBoxController : MonoBehaviour
 
         msBingley.gameObject.SetActive(false);
         //HOTEL
+        effectController.fadeToBlack(this.gameObject);
+        yield return null;
         backgroundImageController.location = 9;
+        yield return null;
         //Jane comes in and looks Sick
         jane.gameObject.SetActive(true);
         jane.currentView = "ball";
@@ -469,6 +493,7 @@ public class SpeechBoxController : MonoBehaviour
         yield return null;
 
         //Enter Elizabeth. Rose filter.
+        effectController.startRoseFilter();
         elizabeth.gameObject.SetActive(true);
         elizabeth.currentView = "home";
         elizabeth.emotion = 4;
@@ -478,6 +503,7 @@ public class SpeechBoxController : MonoBehaviour
         textController.think("Why does she look so good right now? What is wrong with me?");
         yield return null;
 
+        effectController.stopRoseFilter();
         characterBox.text = "Mr. Darcy"; //Blushing
         characterBox.fontStyle = FontStyle.Normal;
         textController.say("Why are you so flushed? I did not see a taxi pull into the driveway, did you run here?");
@@ -529,17 +555,24 @@ public class SpeechBoxController : MonoBehaviour
         elizabeth.gameObject.SetActive(false);
 
         //DARCY'S ROOM
+        effectController.fadeToBlack(this.gameObject);
+        yield return null;
         backgroundImageController.location = 4;
+        yield return null;
         characterBox.text = "Darcy Thoughts"; //Normal
         characterBox.fontStyle = FontStyle.Italic;
         textController.think("She stayed for two more days. We spend most of our time reading.");
         yield return null;
 
         //HOTEL
+        effectController.fadeToBlack(this.gameObject);
+        yield return null;
+        backgroundImageController.location = 9;
+        yield return null;
+
         msBingley.gameObject.SetActive(true);
         msBingley.currentView = "street";
         msBingley.emotion = 1;
-        backgroundImageController.location = 9;
         characterBox.text = "Miss Bingley"; //Bored
         characterBox.fontStyle = FontStyle.Normal;
         textController.say("I'm tired of all this reading we keep doing! ");
@@ -634,7 +667,11 @@ public class SpeechBoxController : MonoBehaviour
 
         //Scene cut. Fade to black.
         //GYM
+        effectController.fadeToBlack(this.gameObject);
+        yield return null;
         backgroundImageController.location = 8;
+        yield return null;
+
         characterBox.text = "Darcy Thoughts"; //Normal
         characterBox.fontStyle = FontStyle.Italic;
         textController.think("Alright. My last errand for today is to cancel my gym membership.");
@@ -651,6 +688,7 @@ public class SpeechBoxController : MonoBehaviour
         jane.emotion = 2;
         wickham.emotion = 2;
         //Rose filter on Elizabeth
+        effectController.startRoseFilter();
         characterBox.text = "Elizabeth Bennet"; //Blushing
         characterBox.fontStyle = FontStyle.Normal;
         textController.say("Hehehe~");
@@ -664,6 +702,7 @@ public class SpeechBoxController : MonoBehaviour
         wickham.emotion = 2;
         //DJ record scratching sound effect
 
+        effectController.stopRoseFilter();
         characterBox.text = "Darcy Thoughts"; //Angry
         characterBox.fontStyle = FontStyle.Italic;
         textController.think("I despise that Wickham. The things he did ' I do not want to remember.");
@@ -675,7 +714,7 @@ public class SpeechBoxController : MonoBehaviour
         yield return null;
         
         choiceController.offerChoices("ignore him and go about my business.", "confront Wickham and take Elizabeth.", "challenge him to a fight like Logan Paul and KSI.");
-        choosing = true;
+        paused = true;
         yield return null;
 
         if (choice == 1)
@@ -733,7 +772,11 @@ public class SpeechBoxController : MonoBehaviour
         jane.gameObject.SetActive(false);
         wickham.gameObject.SetActive(false);
         //SOCIAL PARTY #3
+        effectController.fadeToBlack(this.gameObject);
+        yield return null;
         backgroundImageController.location = 15;
+        yield return null;
+
         characterBox.text = "Darcy Thoughts"; //Normal
         textController.say("I promised myself that I would ask Elizabeth to dance at this party, but I'm having second thoughts'");
         yield return null;
@@ -742,13 +785,13 @@ public class SpeechBoxController : MonoBehaviour
         elizabeth.currentView = "ball";
         elizabeth.emotion = 5;
         //Rose filter
-
+        effectController.startRoseFilter();
         characterBox.text = "Darcy Thoughts"; //Blushing
         textController.think("Should I...");
         yield return null;
         
         choiceController.offerChoices("ask her to dance?", "wait until the next dance?", "teach her about the communist ideals of Karl Marx?");
-        choosing = true;
+        paused = true;
         yield return null;
 
         if (choice == 1)
@@ -829,6 +872,7 @@ public class SpeechBoxController : MonoBehaviour
         yield return null;
 
         //Make Elizabeth bigger
+        elizabeth.scale = (int) scale/3 + 10;
         characterBox.text = "Mr. Darcy"; //Awkward
         textController.say("So...");
         yield return null;
@@ -875,7 +919,8 @@ public class SpeechBoxController : MonoBehaviour
         yield return null;
         elizabeth.emotion = 6;
         //Elizabeth gets smaller
-
+        elizabeth.scale = (int) scale / 3;
+        effectController.stopRoseFilter();
         characterBox.text = "Mr. Darcy"; //Awkward
         textController.say("...Uh...yes");
         yield return null;
@@ -986,7 +1031,11 @@ public class SpeechBoxController : MonoBehaviour
         mrsBennet.gameObject.SetActive(false);
 
         //DARCY HOTEL ROOM
+        effectController.fadeToBlack(this.gameObject);
+        yield return null;
         backgroundImageController.location = 4;
+        yield return null;
+
         mrBingley.gameObject.SetActive(true);
         mrBingley.currentView = "home";
         mrBingley.emotion = 5;
@@ -995,7 +1044,7 @@ public class SpeechBoxController : MonoBehaviour
         yield return null;
         choiceController.offerChoices("Wait, but I was going to do that.", "That is greatest news I have ever heard come out of your mouth.", "Don't do it, think about your future.");
         mrBingley.emotion = 4;
-        choosing = true;
+        paused = true;
         yield return null;
 
         if (choice == 1)
@@ -1095,7 +1144,11 @@ public class SpeechBoxController : MonoBehaviour
         mrBingley.gameObject.SetActive(false);
 
         //UPTOWN LA
+        effectController.fadeToBlack(this.gameObject);
+        yield return null;
         backgroundImageController.location = 5;
+        yield return null;
+
         characterBox.text = "Darcy Thoughts"; //Normal
         characterBox.fontStyle = FontStyle.Italic;
         textController.think("It was probably a good idea to visit my aunt, Mayor de Bourgh, in LA.");
@@ -1112,11 +1165,11 @@ public class SpeechBoxController : MonoBehaviour
         elizabeth.emotion = 10;
         catherine.emotion = 3;
         //Rose filter on Elizabeth
-
+        effectController.startRoseFilter();
         characterBox.text = "Darcy Thoughts"; //Normal
         textController.think("Why is she still so beautiful after all these months? WHY?");
         yield return null;
-
+        effectController.stopRoseFilter();
         characterBox.text = "Mr. Darcy"; //Normal
         characterBox.fontStyle = FontStyle.Normal;
         textController.say("Hello Aunt Catherine.");
@@ -1175,7 +1228,11 @@ public class SpeechBoxController : MonoBehaviour
         catherine.gameObject.SetActive(false);
 
         //MALL
+        effectController.fadeToBlack(this.gameObject);
+        yield return null;
         elizabeth.gameObject.SetActive(true);
+        yield return null;
+
         elizabeth.currentView = "street";
         elizabeth.emotion = 10;
         backgroundImageController.location = 12;
@@ -1194,7 +1251,7 @@ public class SpeechBoxController : MonoBehaviour
         yield return null;
         
         choiceController.offerChoices("Despite the fact that you are in a much lower position in life, don't have very much money at all, and no social standing, I love you. Please marry me.", "I sincerely love you. Please marry me.", "The only reason I'm asking to marry you is I have always wanted to hug someone else instead of hugging Mr. Teddy the teddy bear as a substitute.");
-        choosing = true;
+        paused = true;
         yield return null;
 
         if (choice == 1)
@@ -1272,7 +1329,11 @@ public class SpeechBoxController : MonoBehaviour
         elizabeth.gameObject.SetActive(false);
 
         //DARCY'S ROOM
+        effectController.fadeToBlack(this.gameObject);
+        yield return null;
         backgroundImageController.location = 4; //TODO change this
+        yield return null;
+
         characterBox.text = "Darcy Thoughts"; //Worried
         characterBox.fontStyle = FontStyle.Italic;
         textController.think("I need to write her an email. I have to explain myself or I will regret it.");
@@ -1284,7 +1345,11 @@ public class SpeechBoxController : MonoBehaviour
         yield return null;
 
         //BEVERLY HILLS MANSION
+        effectController.fadeToBlack(this.gameObject);
+        yield return null;
         backgroundImageController.location = 1;
+        yield return null;
+
         characterBox.text = "Mr. Darcy"; //Worried
         characterBox.fontStyle = FontStyle.Normal;
         textController.say("*Thinking aloud* It has been a full week and Elizabeth has still responded to my email. I wonder if she read it and understood my situation.");
@@ -1320,7 +1385,7 @@ public class SpeechBoxController : MonoBehaviour
         elizabeth.emotion = 16;
         mrGardiner.emotion = 0;
         //Rose filter on Elizabeth
-
+        effectController.startRoseFilter();
         elizabeth.emotion = 17;
         characterBox.text = "Elizabeth Bennet"; //Embarrassed
         textController.say("Um...Hi...Darcy...");
@@ -1331,7 +1396,7 @@ public class SpeechBoxController : MonoBehaviour
         characterBox.fontStyle = FontStyle.Italic;
         textController.think("She's here. Oh my god, please have a favorable response.");
         yield return null;
-
+        effectController.stopRoseFilter();
         characterBox.text = "Mr. Darcy"; //Normal
         characterBox.fontStyle = FontStyle.Normal;
         textController.say("Hello Miss Elizabeth. A pleasure as always. And who is this respectable man?");
@@ -1379,7 +1444,11 @@ public class SpeechBoxController : MonoBehaviour
         georgiana.gameObject.SetActive(false);
 
         //DINNER SCENE
+        effectController.fadeToBlack(this.gameObject);
+        yield return null;
         backgroundImageController.location = 6;
+        yield return null;
+
         //Show just Elizabeth
         elizabeth.gameObject.SetActive(true);
         elizabeth.currentView = "street";
@@ -1406,16 +1475,19 @@ public class SpeechBoxController : MonoBehaviour
         yield return null;
         elizabeth.emotion = 6;
         //Rose Filter
-
+        effectController.startRoseFilter();
         characterBox.text = "Mr. Darcy"; //Blushing
         textController.say("*Looks away* No problem.");
         yield return null;
-
+        effectController.stopRoseFilter();
         elizabeth.gameObject.SetActive(false);
 
         //LIVING ROOM
-
+        effectController.fadeToBlack(this.gameObject);
+        yield return null;
         backgroundImageController.location = 11;
+        yield return null;
+
         msBingley.gameObject.SetActive(true);
         msBingley.currentView = "ball";
         msBingley.emotion = 3;
@@ -1457,7 +1529,11 @@ public class SpeechBoxController : MonoBehaviour
         msBingley.gameObject.SetActive(false);
 
         //ELIZABETH'S ROOM
+        effectController.fadeToBlack(this.gameObject);
+        yield return null;
         backgroundImageController.location = 7;
+        yield return null;
+
         characterBox.text = "Darcy Thoughts"; //Normal
         characterBox.fontStyle = FontStyle.Italic;
         textController.think("I want to see Elizabeth.");
@@ -1477,7 +1553,7 @@ public class SpeechBoxController : MonoBehaviour
         yield return null;
         
         choiceController.offerChoices("Ask: What's wrong?", "Ignore her.", "I know it's really sad that a 23 Jump Street is not coming out, but there is no need to cry about it.");
-        choosing = true;
+        paused = true;
         yield return null;
 
         if (choice == 1)
@@ -1569,13 +1645,17 @@ public class SpeechBoxController : MonoBehaviour
         elizabeth.gameObject.SetActive(false);
 
         //LAS VEGAS
+        effectController.fadeToBlack(this.gameObject);
+        yield return null;
+        backgroundImageController.location = 10;
+        yield return null;
+
         wickham.gameObject.SetActive(true);
         lydia.gameObject.SetActive(true);
         wickham.currentView = "home";
         lydia.currentView = "home";
         wickham.emotion = 3;
         lydia.emotion = 3;
-        backgroundImageController.location = 10;
         characterBox.text = "Mr. Darcy"; //Angry
         textController.say("Wickham! I finally found you, you scumbag!");
         yield return null;
@@ -1625,7 +1705,7 @@ public class SpeechBoxController : MonoBehaviour
         wickham.emotion = 0;
 
         choiceController.offerChoices("Well...Alright...People already know of your elopement anyways. It will save everyone face if you get married.", "I will give you only one hundred thousand dollars, but still include your other portion.", "Or we put aside the money, and I can set you up with with a private meeting with Pewdiepie.");
-        choosing = true;
+        paused = true;
         yield return null;
 
         if (choice == 1)
@@ -1690,7 +1770,11 @@ public class SpeechBoxController : MonoBehaviour
         lydia.gameObject.SetActive(false);
 
         //BEVERLY HILLS STREET
+        effectController.fadeToBlack(this.gameObject);
+        yield return null;
         backgroundImageController.location = 2;
+        yield return null;
+
         characterBox.text = "Mr. Darcy"; //Normal
         textController.say("Bingley, I finally found you!");
         yield return null;
@@ -1725,7 +1809,7 @@ public class SpeechBoxController : MonoBehaviour
         mrBingley.emotion = 6;
 
         choiceController.offerChoices("Sneak up behind hear, cover her eyes, and whisper in her ear 'You will marry me.'", "Tell her how you sincerely feel and propose to her. I am sure she will accept.", "Tell her you have a special surprise set up in another location. Ask her to cover her eyes and then ditch her.");
-        choosing = true;
+        paused = true;
         yield return null;
 
         if (choice == 1)
@@ -1773,7 +1857,11 @@ public class SpeechBoxController : MonoBehaviour
         mrBingley.gameObject.SetActive(false);
 
         //BENNET HOME
+        effectController.fadeToBlack(this.gameObject);
+        yield return null;
         backgroundImageController.location = 0;
+        yield return null;
+
         mrBennet.gameObject.SetActive(true);
         mrBennet.currentView = "home";
         mrBennet.emotion = 1;
@@ -1827,7 +1915,11 @@ public class SpeechBoxController : MonoBehaviour
         mrBennet.gameObject.SetActive(false);
 
         //CUPERTINO STREET
+        effectController.fadeToBlack(this.gameObject);
+        yield return null;
         backgroundImageController.location = 3;
+        yield return null;
+
         //On screen is Mr. Bingley
         mrBingley.gameObject.SetActive(true);
         mrBingley.currentView = "street";
@@ -1869,10 +1961,12 @@ public class SpeechBoxController : MonoBehaviour
         elizabeth.emotion = 0;
         jane.emotion = 2;
         //Rose filter on Elizabeth
+        effectController.startRoseFilter();
         characterBox.text = "Darcy Thoughts"; //Blushing
         characterBox.fontStyle = FontStyle.Italic;
         textController.think("As beautiful as ever...Maybe Bingley will not be the only one proposing tonight...");
         yield return null;
+        effectController.stopRoseFilter();
 
         mrBingley.emotion = 6;
         jane.emotion = 1;
@@ -1922,7 +2016,7 @@ public class SpeechBoxController : MonoBehaviour
         yield return null;
         
         choiceController.offerChoices("I find you really annoying, honestly. How can your emotions seriously have changed so much after one email where you can't even see me?", "Frankly, I don't know what to say.", "my feelings are still unchanged. *Gets down on one knee* Will you marry me?");
-        choosing = true;
+        paused = true;
         yield return null;
 
         if (choice == 1)

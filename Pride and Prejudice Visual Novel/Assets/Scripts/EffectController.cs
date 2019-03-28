@@ -20,13 +20,14 @@ public class EffectController : MonoBehaviour
 
     private IEnumerator fadeToBlackCor(GameObject toNotify){
         byte rate = 6;
-        
+
         while(img.color.a*255 < 255-rate){
             img.color = new Color32(0, 0, 0, (byte)(img.color.a*255 + rate));
             yield return null;
         }
 
         img.color = new Color32(0, 0, 0, 255);
+        toNotify.SendMessage("midTransition");
         yield return new WaitForSeconds(0.5f);
 
         while(img.color.a*255 > rate){

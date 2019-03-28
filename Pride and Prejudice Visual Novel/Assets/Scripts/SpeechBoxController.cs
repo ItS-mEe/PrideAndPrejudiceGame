@@ -78,56 +78,58 @@ public class SpeechBoxController : MonoBehaviour
 
     private IEnumerator GetScript(){
         //INIT
+        double scale = 1.2 * Screen.height;
         catherine .gameObject.SetActive(false);
         catherine .transform.parent = this.transform;
         ((catherine .transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
-        catherine.scale = 500/3;
+        catherine.scale = (int)(scale/3);
         elizabeth .gameObject.SetActive(false);
         elizabeth .transform.parent = this.transform;
         ((elizabeth .transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
-        elizabeth.scale = 500/3;
+        elizabeth.scale = (int) (scale/3);
         georgiana .gameObject.SetActive(false);
         georgiana .transform.parent = this.transform;
         ((georgiana .transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
-        georgiana.scale = 500/3;
+        georgiana.scale = (int)(scale /3);
         jane      .gameObject.SetActive(false);
         jane      .transform.parent = this.transform;
         ((jane      .transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
-        jane.scale = 500/3;
+        jane.scale = (int)(scale /3);
         lydia     .gameObject.SetActive(false);
         lydia     .transform.parent = this.transform;
         ((lydia     .transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
-        lydia.scale = 500/3;
+        lydia.scale = (int)(scale /3);
         msBingley .gameObject.SetActive(false);
         msBingley .transform.parent = this.transform;
         ((msBingley .transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
-        msBingley.scale = 500/3;
+        msBingley.scale = (int)(scale /3);
         mrBingley .gameObject.SetActive(false);
         mrBingley .transform.parent = this.transform;
         ((mrBingley .transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
-        mrBingley.scale = 500/3;
+        mrBingley.scale = (int)(scale /3);
         mrGardiner.gameObject.SetActive(false);
         mrGardiner.transform.parent = this.transform;
         ((mrGardiner.transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
-        mrGardiner.scale = 500/3;
+        mrGardiner.scale = (int)(scale /3);
         mrDarcy   .gameObject.SetActive(false);
         mrDarcy   .transform.parent = this.transform;
         ((mrDarcy   .transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
-        mrDarcy.scale = 500/3;
+        mrDarcy.scale = (int)(scale /3);
         mrsBennet .gameObject.SetActive(false);
         mrsBennet .transform.parent = this.transform;
         ((mrsBennet .transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
-        mrsBennet.scale = 500/3;
+        mrsBennet.scale = (int)(scale /3);
         wickham   .gameObject.SetActive(false);
         wickham   .transform.parent = this.transform;
         ((wickham   .transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
-        wickham.scale = 500/3;
+        wickham.scale = (int)(scale /3);
         mrBennet  .gameObject.SetActive(false);
         mrBennet  .transform.parent = this.transform;
         ((mrBennet  .transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
-        mrBennet.scale = 500/3;
+        mrBennet.scale = (int)(scale /3);
 
         // Mr Bingley asks Mr Darcy to go with him to the party
+        MonoBehaviour.print(Screen.height);
         mrBingley.gameObject.SetActive(true);
         mrBingley.currentView = "home";
         mrBingley.emotion = 5;
@@ -341,6 +343,7 @@ public class SpeechBoxController : MonoBehaviour
         yield return null;
         //Elizabeth Angry Expression
         elizabeth.gameObject.SetActive(false);
+        mrBingley.gameObject.SetActive(false);
 
         //SOCIAL PARTY #2
         backgroundImageController.location = 14;
@@ -358,6 +361,7 @@ public class SpeechBoxController : MonoBehaviour
         msBingley.emotion = 3;
         characterBox.text = "Miss Bingley"; //Annoyed
         characterBox.fontStyle = FontStyle.Normal;
+        elizabeth.gameObject.SetActive(false);
         textController.say("...rcy. Hey! Darcy! What's wrong with you?");
         yield return null;
         msBingley.emotion = 2;
@@ -370,8 +374,8 @@ public class SpeechBoxController : MonoBehaviour
         characterBox.text = "Miss Bingley"; //Annoyed
         textController.say("I've noticed you've been staring at that Elizabeth girl in all the parties recently. Explain yourself.");
         yield return null;
-
         choiceController.offerChoices("I actually have really started to admire her.", "No, I have not been. I don't know what you are talking about?", "Her face is like one one of those oddly satisfying gifs. Its, well, oddly satisfying.");
+        msBingley.emotion = 2;
         choosing = true;
         yield return null;
 
@@ -869,15 +873,18 @@ public class SpeechBoxController : MonoBehaviour
         characterBox.text = "Elizabeth Bennet"; //Interested
         textController.say("I saw you at the gym.");
         yield return null;
+        elizabeth.emotion = 6;
         //Elizabeth gets smaller
 
         characterBox.text = "Mr. Darcy"; //Awkward
         textController.say("...Uh...yes");
         yield return null;
 
+        elizabeth.emotion = 7;
         characterBox.text = "Elizabeth Bennet"; //Interested
         textController.say("I noticed your reaction to my friend Mr. Wickham.");
         yield return null;
+        elizabeth.emotion = 6;
 
         characterBox.text = "Mr. Darcy"; //Awkward
         textController.say("...");
@@ -897,11 +904,16 @@ public class SpeechBoxController : MonoBehaviour
 
         textController.sayFastAdvance("Advances without waiting for player's input", this.gameObject);
         //Elizabeth leaves
+        elizabeth.gameObject.SetActive(false);
 
         //Mrs. Bennet enters
+        mrsBennet.gameObject.SetActive(true);
+        mrsBennet.currentView = "ball";
+        mrsBennet.emotion = 2;
         characterBox.text = "Mrs. Bennet"; //Cold
         textController.say("*Coldly*  Why hello Mr. Darcy.");
         yield return null;
+        mrsBennet.emotion = 5;
 
         characterBox.text = "Darcy Thoughts"; //Normal
         characterBox.fontStyle = FontStyle.Italic;
@@ -912,9 +924,12 @@ public class SpeechBoxController : MonoBehaviour
         characterBox.fontStyle = FontStyle.Normal;
         textController.say("Hello Mrs. Bennet. How are you this fine evening?");
         yield return null;
+
+        mrsBennet.emotion = 2;
         characterBox.text = "Mrs. Bennet"; //Cold
         textController.say("*Coldly* Just fine. Thank you.");
         yield return null;
+        mrsBennet.emotion = 5;
 
         characterBox.text = "Darcy Thoughts"; //Normal
         characterBox.fontStyle = FontStyle.Italic;
@@ -924,8 +939,10 @@ public class SpeechBoxController : MonoBehaviour
         characterBox.text = "Mr. Darcy"; //Normal
         characterBox.fontStyle = FontStyle.Normal;
         textController.say("To what do I owe the pleasure of this conversation to Mrs. Bennet?");
+        mrsBennet.emotion = 4;
         yield return null;
 
+        mrsBennet.emotion = 1;
         characterBox.text = "Mrs. Bennet"; //Happy
         textController.say("I'm sure you have heard already, but my Jane and Mr. Bingley are about to be engaged and I just wanted to tell you, I'm so excited.");
         yield return null;
@@ -949,8 +966,9 @@ public class SpeechBoxController : MonoBehaviour
         yield return null;
 
         characterBox.text = "Mrs. Bennet"; //Happy
-        textController.say("Well, about to be, but yes.");
+        textController.say("And lavenders...Well, about to be, but yes. And a yellow dress to stand out of course...");
         yield return null;
+        mrsBennet.emotion = 0;
 
         characterBox.text = "Darcy Thoughts"; //Worried
         characterBox.fontStyle = FontStyle.Italic;
@@ -965,31 +983,39 @@ public class SpeechBoxController : MonoBehaviour
         characterBox.text = "Mrs. Bennet"; //AbsentHappy
         textController.say("Yes, yes, go right ahead. *Thinking to herself* The dais will have to be white of course...");
         yield return null;
+        mrsBennet.gameObject.SetActive(false);
 
         //DARCY HOTEL ROOM
         backgroundImageController.location = 4;
+        mrBingley.gameObject.SetActive(true);
+        mrBingley.currentView = "home";
+        mrBingley.emotion = 5;
         characterBox.text = "Mr. Bingley"; //Smiling
         textController.say("Darcy, I'm excited. That woman Jane, she's amazing. She's smart, sweet, pretty, kind, and funny. I'm going to ask her to be my wife. What do you think?");
-        
         yield return null;
         choiceController.offerChoices("Wait, but I was going to do that.", "That is greatest news I have ever heard come out of your mouth.", "Don't do it, think about your future.");
+        mrBingley.emotion = 4;
         choosing = true;
         yield return null;
 
         if (choice == 1)
         {
             //dialogue for choice 1
+            mrBingley.emotion = 7;
             characterBox.text = "Mr. Bingley"; //Surprised
             textController.say("For real?");
             yield return null;
+            mrBingley.emotion = 6;
 
             characterBox.text = "Mr. Darcy"; //Normal
             textController.say("No, of course not. It is called sarcasm.");
             yield return null;
 
-            characterBox.text = "Mr. Bingley"; //Smiling
+            mrBingley.emotion = 5;
+            characterBox.text = "Mr. Bingley"; //Smiling 
             textController.say("What are your actual thoughts?");
             yield return null;
+            mrBingley.emotion = 4;
 
             characterBox.text = "Mr. Darcy"; //Normal
             textController.say("Speaking from logical standpoint, I think this marriage is completely irrational.");
@@ -998,17 +1024,21 @@ public class SpeechBoxController : MonoBehaviour
         else if (choice == 2)
         {
             //dialogue for choice 2
+            mrBingley.emotion = 7;
             characterBox.text = "Mr. Bingley"; //Surprised
             textController.say("Wait, really, then why are you not smiling?");
             yield return null;
+            mrBingley.emotion = 6;
 
             characterBox.text = "Mr. Darcy"; //Normal
             textController.say("No, of course not. It is called sarcasm.");
             yield return null;
 
+            mrBingley.emotion = 5;
             characterBox.text = "Mr. Bingley"; //Smiling
             textController.say("What are your actual thoughts?");
             yield return null;
+            mrBingley.emotion = 4;
 
             characterBox.text = "Mr. Darcy"; //Normal
             textController.say("Speaking from logical standpoint, I think this marriage is completely irrational.");
@@ -1020,25 +1050,31 @@ public class SpeechBoxController : MonoBehaviour
             yield return null;
         }
 
+        mrBingley.emotion = 7;
         characterBox.text = "Mr. Bingley"; //Surprised
         textController.say("What do you mean?");
         yield return null;
+        mrBingley.emotion = 6;
 
         characterBox.text = "Mr. Darcy"; //Normal
         textController.say("First of all, I noticed that the woman did not have as much of her heart set in the relationship as you seemed to have. She was easily smiling and talking to others while you were pining after her.");
         yield return null;
 
-        characterBox.text = "Mr. Bingley"; //Surprised
+        mrBingley.emotion = 3;
+        characterBox.text = "Mr. Bingley"; //Sad
         textController.say("But...");
         yield return null;
+        mrBingley.emotion = 2;
 
         characterBox.text = "Mr. Darcy"; //Normal
         textController.say("No, listen. Second of all, simply compare yourself to her. Her whole family's salary combined is less than half of yours. She is from a different world.");
         yield return null;
 
+        mrBingley.emotion = 3;
         characterBox.text = "Mr. Bingley"; //Sad
         textController.say("But she...");
         yield return null;
+        mrBingley.emotion = 2;
 
         characterBox.text = "Mr. Darcy"; //Normal
         textController.say("You need to trust me. This is the best option for your future. There are other women out there who are more deserving of you.");
@@ -1049,10 +1085,14 @@ public class SpeechBoxController : MonoBehaviour
         textController.think("The same principles apply to my situation with Elizabeth. I need to leave before it escalates.");
         yield return null;
 
+        mrBingley.emotion = 3;
         characterBox.text = "Mr. Bingley"; //Sad
         characterBox.fontStyle = FontStyle.Normal;
         textController.say("*Sighs* Alright. Let's go back to Beverly Hills.");
         yield return null;
+        mrBingley.emotion = 2;
+
+        mrBingley.gameObject.SetActive(false);
 
         //UPTOWN LA
         backgroundImageController.location = 5;
@@ -1065,6 +1105,12 @@ public class SpeechBoxController : MonoBehaviour
         textController.think("Hold on...is that the girl from two months ago...Elizabeth...");
         yield return null;
         //Show Elizabeth and Catherine de Bourgh
+        elizabeth.gameObject.SetActive(true);
+        catherine.gameObject.SetActive(true);
+        elizabeth.currentView = "street";
+        catherine.currentView = "home";
+        elizabeth.emotion = 10;
+        catherine.emotion = 3;
         //Rose filter on Elizabeth
 
         characterBox.text = "Darcy Thoughts"; //Normal
@@ -1076,6 +1122,7 @@ public class SpeechBoxController : MonoBehaviour
         textController.say("Hello Aunt Catherine.");
         yield return null;
 
+        catherine.emotion = 2;
         characterBox.text = "Mayor Catherine de Bourgh"; //Smiling
         textController.say("Darcy!");
         yield return null;
@@ -1083,10 +1130,13 @@ public class SpeechBoxController : MonoBehaviour
         characterBox.text = "Mayor Catherine de Bourgh"; //Smiling
         textController.say("My favorite nephew what a pleasure. I was just speaking with this young lady, Miss Elizabeth Bennet.");
         yield return null;
+        catherine.emotion = 1;
 
+        elizabeth.emotion = 11;
         characterBox.text = "Elizabeth Bennet"; //Cold
         textController.say("*Coldly* Mr. Darcy.");
         yield return null;
+        elizabeth.emotion = 10;
 
         characterBox.text = "Darcy Thoughts"; //Normal
         characterBox.fontStyle = FontStyle.Italic;
@@ -1096,11 +1146,14 @@ public class SpeechBoxController : MonoBehaviour
         characterBox.text = "Mr. Darcy"; //Normal
         characterBox.fontStyle = FontStyle.Normal;
         textController.say("Miss Elizabeth Bennet.");
+        catherine.emotion = 3;
         yield return null;
 
+        catherine.emotion = 0;
         characterBox.text = "Mayor Catherine de Bourgh"; //Cold
         textController.say("Well...that's nice, you two are already acquainted. Why don't you show her around LA Darcy. This woman has no appreciation for the classical arts. She couldn't even recognize Mozart when it was played in front of her. I don't think I can stand another minute of her low-class prattle.");
         yield return null;
+        catherine.emotion = 3;
 
         characterBox.text = "Darcy Thoughts"; //Normal
         characterBox.fontStyle = FontStyle.Italic;
@@ -1112,11 +1165,19 @@ public class SpeechBoxController : MonoBehaviour
         textController.say("I do not mind at all Aunt Catherine. We will take your leave then.");
         yield return null;
 
+        elizabeth.emotion = 11;
         characterBox.text = "Elizabeth Bennet"; //Cold
         textController.say("*Coldly* Good day Mayor de Bourgh.");
         yield return null;
+        elizabeth.emotion = 10;
+
+        elizabeth.gameObject.SetActive(false);
+        catherine.gameObject.SetActive(false);
 
         //MALL
+        elizabeth.gameObject.SetActive(true);
+        elizabeth.currentView = "street";
+        elizabeth.emotion = 10;
         backgroundImageController.location = 12;
         //Sound of conversation
         characterBox.text = "Mr. Darcy"; //Normal
@@ -1126,10 +1187,6 @@ public class SpeechBoxController : MonoBehaviour
         characterBox.text = "Darcy Thoughts"; //Normal
         characterBox.fontStyle = FontStyle.Italic;
         textController.think("Why can I not stop thinking about her? Is this what love is? If that is the case, then I do understand where Bingley was coming from. I am even willing to propose right now to get married.");
-        yield return null;
-
-        characterBox.text = "Darcy Thoughts"; //Normal
-        textController.think("But what should I say when I propose?");
         yield return null;
 
         characterBox.text = "Darcy Thoughts"; //Normal
@@ -1148,10 +1205,12 @@ public class SpeechBoxController : MonoBehaviour
         else if (choice == 2)
         {
             //dialogue for choice 2
+            elizabeth.emotion = 5;
             characterBox.text = "Elizabeth Bennet"; //Weird
             characterBox.fontStyle = FontStyle.Normal;
             textController.say("What?");
             yield return null;
+            elizabeth.emotion = 4;
 
             characterBox.text = "Mr. Darcy"; //Normal
             textController.say("I am willing to marry you even though you would provide no benefit to me. You are relatively poor, have low tastes, and not to mention have just 4 friends on facebook, but I am willing to look past all that and ask you to marry me.");
@@ -1160,45 +1219,57 @@ public class SpeechBoxController : MonoBehaviour
         else
         {
             //dialogue for choice 3
+            elizabeth.emotion = 5;
             characterBox.text = "Elizabeth Bennet"; //Weird
             characterBox.fontStyle = FontStyle.Normal;
             textController.say("What?");
             yield return null;
+            elizabeth.emotion = 4;
 
             characterBox.text = "Mr. Darcy"; //Normal
             textController.say("I am willing to marry you even though you would provide no benefit to me. You are relatively poor, have low tastes, and not to mention have just 4 friends on facebook, but I am willing to look past all that and ask you to marry me.");
             yield return null;
         }
 
+        elizabeth.emotion = 9;
         characterBox.text = "Elizabeth Bennet"; //Angry
         characterBox.fontStyle = FontStyle.Normal;
         textController.say("There is no way I am ever marrying you!");
         yield return null;
+        elizabeth.emotion = 8;
         //Silence
 
         characterBox.text = "Mr. Darcy"; //Worried
         textController.say("Why?");
         yield return null;
 
+        elizabeth.emotion = 9;
         characterBox.text = "Elizabeth Bennet"; //Angry
         textController.say("For real? Do you really think I would marry you with such a garbage proposal. Also, during our first time meeting you plainly called me ugly. Not only that, you caused my friend Wickham a lot of grief and I'm sure you had something to do with Jane and Bingley's breakup. Jane is completely heartbroken because of you.");
         yield return null;
+        elizabeth.emotion = 8;
 
         characterBox.text = "Mr. Darcy"; //Surprised
         textController.say("Wickham! Wickham is lying scum...Also, Bingley and Jane...I...");
         yield return null;
 
+        elizabeth.emotion = 9;
         characterBox.text = "Elizabeth Bennet"; //Angry
         textController.say("Oh really. Then who do I believe. The lying scum? Or the scum who called me ugly to my face?");
         yield return null;
+        elizabeth.emotion = 8;
 
         characterBox.text = "Mr. Darcy"; //Worried
         textController.say("*Mumbles* To be fair, eavesdropping is rude...");
         yield return null;
 
+        elizabeth.emotion = 9;
         characterBox.text = "Elizabeth Bennet"; //Angry
         textController.say("I don't want to hear anymore! I'm already angry you had the nerve to propose to me. Let's go back. I need to leave this place.");
         yield return null;
+        elizabeth.emotion = 8;
+
+        elizabeth.gameObject.SetActive(false);
 
         //DARCY'S ROOM
         backgroundImageController.location = 4; //TODO change this
@@ -1219,28 +1290,42 @@ public class SpeechBoxController : MonoBehaviour
         textController.say("*Thinking aloud* It has been a full week and Elizabeth has still responded to my email. I wonder if she read it and understood my situation.");
         yield return null;
         //Show Georgiana
+        georgiana.gameObject.SetActive(true);
+        georgiana.currentView = "home";
+        georgiana.emotion = 1;
 
         characterBox.text = "Georgiana Darcy"; //Smiling
         textController.say("Brother!");
         yield return null;
+        georgiana.emotion = 0;
 
         characterBox.text = "Mr. Darcy"; //Smiling
         textController.say("Georgiana! There is my favorite little sister!");
         yield return null;
 
+        georgiana.emotion = 3;
         characterBox.text = "Georgiana Darcy"; //Surprised
         textController.say("Who are they?");
         yield return null;
+        georgiana.emotion = 2;
 
         characterBox.text = "Mr. Darcy"; //Surprised
         textController.say("*Turns around*");
         yield return null;
         //Show Elizabeth and Mr. Gardiner
+        elizabeth.gameObject.SetActive(true);
+        mrGardiner.gameObject.SetActive(true);
+        elizabeth.currentView = "street";
+        mrGardiner.currentView = "home";
+        elizabeth.emotion = 16;
+        mrGardiner.emotion = 0;
         //Rose filter on Elizabeth
 
+        elizabeth.emotion = 17;
         characterBox.text = "Elizabeth Bennet"; //Embarrassed
         textController.say("Um...Hi...Darcy...");
         yield return null;
+        elizabeth.emotion = 16;
 
         characterBox.text = "Darcy Thoughts"; //Worried
         characterBox.fontStyle = FontStyle.Italic;
@@ -1252,25 +1337,33 @@ public class SpeechBoxController : MonoBehaviour
         textController.say("Hello Miss Elizabeth. A pleasure as always. And who is this respectable man?");
         yield return null;
 
+        mrGardiner.emotion = 1;
         characterBox.text = "Mr. Gardiner"; //Normal
         textController.say("Hello Mr. Darcy, I am Edward Gardiner, Elizabeth's uncle. A pleasure. You seem much more polite than I was originally told.");
         yield return null;
+        mrGardiner.emotion = 0;
 
+        elizabeth.emotion = 17;
         characterBox.text = "Elizabeth Bennet"; //Embarrassed
         textController.say("Yes...Sorry, Uncle Gardiner. I appear to have been proven wrong.");
         yield return null;
+        elizabeth.emotion = 16;
 
         characterBox.text = "Mr. Darcy"; //Normal
         textController.say("Everything in the past is water under the bridge. You both must come for dinner. Elizabeth this is my sister, Georgiana.");
         yield return null;
 
+        georgiana.emotion = 1;
         characterBox.text = "Georgiana Darcy"; //Smiling
         textController.say("Hello Miss Elizabeth. I hope we can chat with each other a decent amount later.");
         yield return null;
+        georgiana.emotion = 0;
 
+        elizabeth.emotion = 17;
         characterBox.text = "Elizabeth Bennet"; //Embarrassed
         textController.say("You seem...a lot different than...");
         yield return null;
+        elizabeth.emotion = 16;
 
         characterBox.text = "Darcy Thoughts"; //Normal
         characterBox.fontStyle = FontStyle.Italic;
@@ -1281,10 +1374,16 @@ public class SpeechBoxController : MonoBehaviour
         characterBox.fontStyle = FontStyle.Normal;
         textController.say("Well, since we are done with the formalities, please come inside. Miss Bingley will be joining us as well.");
         yield return null;
+        elizabeth.gameObject.SetActive(false);
+        mrGardiner.gameObject.SetActive(false);
+        georgiana.gameObject.SetActive(false);
 
         //DINNER SCENE
         backgroundImageController.location = 6;
         //Show just Elizabeth
+        elizabeth.gameObject.SetActive(true);
+        elizabeth.currentView = "street";
+        elizabeth.emotion = 0;
         characterBox.text = "Darcy Thoughts"; //Normal
         characterBox.fontStyle = FontStyle.Italic;
         textController.think("Come on Darcy, try to impress her. There has to be something I can do to get her to like me.");
@@ -1293,23 +1392,33 @@ public class SpeechBoxController : MonoBehaviour
         characterBox.text = "Mr. Darcy"; //Normal
         characterBox.fontStyle = FontStyle.Normal;
         textController.say("Miss Elizabeth please allow me to pass you the sauce.");
+        elizabeth.emotion = 4;
         yield return null;
 
+        elizabeth.emotion = 5;
         characterBox.text = "Elizabeth Bennet"; //Weird
         textController.say("Oh...Umm...Sure...");
         yield return null;
 
+        elizabeth.emotion = 7;
         characterBox.text = "Elizabeth Bennet"; //Smiling
         textController.say("Thanks");
         yield return null;
+        elizabeth.emotion = 6;
         //Rose Filter
 
         characterBox.text = "Mr. Darcy"; //Blushing
         textController.say("*Looks away* No problem.");
         yield return null;
 
+        elizabeth.gameObject.SetActive(false);
+
         //LIVING ROOM
+
         backgroundImageController.location = 11;
+        msBingley.gameObject.SetActive(true);
+        msBingley.currentView = "ball";
+        msBingley.emotion = 3;
         characterBox.text = "Miss Bingley"; //Sassy
         textController.say("What a boorish dinner. Did you see Elizabeth, she was so plain and quiet at the dinner.");
         yield return null;
@@ -1329,18 +1438,23 @@ public class SpeechBoxController : MonoBehaviour
         characterBox.text = "Miss Bingley"; //Sassy
         textController.say("And did you see? She wasn't even wearing any eyeliner! UGH! I'd give her, like, a two on a good day.");
         yield return null;
+        msBingley.emotion = 2;
 
         characterBox.text = "Mr. Darcy"; //Normal
         textController.say("I used to be of the same opinion, but now I consider to be the prettiest woman I know.");
         yield return null;
 
+        msBingley.emotion = 1;
         characterBox.text = "Miss Bingley"; //Angry
         textController.say("How could you even say that? Do you see all the moisturizer and makeup use? I have, like, a professional fashion adviser. I'm an accomplished professional model. How can she even be close to my level, like, seriously.");
         yield return null;
+        msBingley.emotion = 0;
 
         characterBox.text = "Mr. Darcy"; //Normal
         textController.say("These are all true facts, but because of Elizabeth my perspective of the world and how I view people's worth has changed. What matters more to me right now is feelings.");
         yield return null;
+
+        msBingley.gameObject.SetActive(false);
 
         //ELIZABETH'S ROOM
         backgroundImageController.location = 7;
@@ -1349,10 +1463,14 @@ public class SpeechBoxController : MonoBehaviour
         textController.think("I want to see Elizabeth.");
         yield return null;
 
+        //Show Elizabeth off to the side crying
+        elizabeth.gameObject.SetActive(true);
+        elizabeth.currentView = "street";
+        elizabeth.emotion = 12;
+
         characterBox.text = "Darcy Thoughts"; //Worried
         textController.think("Wait...Is she crying?");
         yield return null;
-        //Show Elizabeth off to the side crying
 
         characterBox.text = "Darcy Thoughts"; //Normal
         textController.think("Oh no, what do I do?");
@@ -1383,96 +1501,129 @@ public class SpeechBoxController : MonoBehaviour
         {
             //dialogue for choice 3
             //Center Elizabeth
+            elizabeth.emotion = 13;
             characterBox.text = "Elizabeth Bennet"; //Crying
             characterBox.fontStyle = FontStyle.Normal;
             textController.say("Jokes are not going to cheer me up in this situation Darcy.");
             yield return null;
+            elizabeth.emotion = 12;
 
             characterBox.text = "Mr. Darcy"; //Normal
             textController.say("I apologize, I thought I would try to cheer you up. Did something happen? You can tell me anything.");
             yield return null;
         }
 
+        elizabeth.emotion = 13;
         characterBox.text = "Elizabeth Bennet"; //Crying
         characterBox.fontStyle = FontStyle.Normal;
         textController.say("...");
         yield return null;
+        elizabeth.emotion = 12;
 
         characterBox.text = "Mr. Darcy"; //Determined
         textController.say("I can wait here however long it takes for you to open up to me.");
         yield return null;
 
+        elizabeth.emotion = 13;
         characterBox.text = "Elizabeth Bennet"; //Crying
-        textController.say("...Wickham managed to provoke my little sister *sniff* Lydia *sniff* into eloping with him to Las Vegas.");
+        textController.say("...Wickham managed to provoke my 19 year old little sister *sniff* Lydia *sniff* into eloping with him to Las Vegas.");
         yield return null;
+        elizabeth.emotion = 12;
 
         characterBox.text = "Mr. Darcy"; //Surprised
         textController.say("Oh no! This is all my fault. I did not reveal to your family the truth about Wickham.");
         yield return null;
 
+        elizabeth.emotion = 13;
         characterBox.text = "Elizabeth Bennet"; //Crying
         textController.say("*Sniff* No it's mine. I did not tell them either, even after you told me about him. Now my father is struggling to find them in Las Vegas.");
         yield return null;
+        elizabeth.emotion = 12;
 
         characterBox.text = "Mr. Darcy"; //Determined
         textController.say("We need to act fast so nothing horrible happens. First, take this tissue and wipe your face.");
+        elizabeth.emotion = 14;
         yield return null;
         //Change Elizabeth Face to determined
 
+        elizabeth.emotion = 15;
         characterBox.text = "Elizabeth Bennet"; //Determined
         textController.say("Thank you.");
         yield return null;
+        elizabeth.emotion = 14;
 
         characterBox.text = "Mr. Darcy"; //Determined
         textController.say("No problem. Now let us proceed quickly. You go comfort your family in these dark times. I will fly to Las Vegas in my private jet and assist your father.");
         yield return null;
 
+        elizabeth.emotion = 15;
         characterBox.text = "Elizabeth Bennet"; //Determined
         textController.say("Ok. Please find them Mr. Darcy.");
         yield return null;
+        elizabeth.emotion = 14;
 
         characterBox.text = "Mr. Darcy"; //Determined
         textController.say("Of course.");
         yield return null;
 
+        elizabeth.gameObject.SetActive(false);
+
         //LAS VEGAS
+        wickham.gameObject.SetActive(true);
+        lydia.gameObject.SetActive(true);
+        wickham.currentView = "home";
+        lydia.currentView = "home";
+        wickham.emotion = 3;
+        lydia.emotion = 3;
         backgroundImageController.location = 10;
         characterBox.text = "Mr. Darcy"; //Angry
         textController.say("Wickham! I finally found you, you scumbag!");
         yield return null;
 
+        wickham.emotion = 0;
+        lydia.emotion = 2;
         characterBox.text = "Lydia Bennet"; //Sassy
         textController.say("Hey, don't call him that!");
         yield return null;
+        lydia.emotion = 1;
+
 
         characterBox.text = "Mr. Darcy"; //Angry
         textController.say("You stay out of this. Let the adults talk. It took me a 1 hour plane ride, a wide distribution of money, and several phone calls to find you. Mr. Bennet even gave up before I found you.");
         yield return null;
 
+        wickham.emotion = 1;
         characterBox.text = "Mr. Wickham"; //Closed
         textController.say("Hey man, chill out. We aren't doing anything wrong. We are in love and going to get married for sure. What's the big deal?");
         yield return null;
+        wickham.emotion = 0;
 
+        lydia.emotion = 2;
         characterBox.text = "Lydia Bennet"; //Sassy
         textController.say("Yeah, I love him~");
         yield return null;
+        lydia.emotion = 1;
 
         characterBox.text = "Mr. Darcy"; //Angry
         textController.say("Again, you be quiet, and don't give me that Wickham. Let her go now before you stain her reputation or do something else horrendous.");
         yield return null;
 
+        wickham.emotion = 1;
         characterBox.text = "Mr. Wickham"; //Closed
         textController.say("What's with you man? For one thing, why do you always talk like some character from the 1800s?");
         yield return null;
+        wickham.emotion = 0;
 
         characterBox.text = "Mr. Darcy"; //Angry
         textController.say("I'm in no mood for jokes Wickham. End this facade or else.");
         yield return null;
 
+        wickham.emotion = 1;
         characterBox.text = "Mr. Wickham"; //Closed
         textController.say("Alright I'll cut you a deal. If I get two hundred thousand dollars and fifty thousand a year I will marry the girl.");
         yield return null;
-        
+        wickham.emotion = 0;
+
         choiceController.offerChoices("Well...Alright...People already know of your elopement anyways. It will save everyone face if you get married.", "I will give you only one hundred thousand dollars, but still include your other portion.", "Or we put aside the money, and I can set you up with with a private meeting with Pewdiepie.");
         choosing = true;
         yield return null;
@@ -1485,17 +1636,21 @@ public class SpeechBoxController : MonoBehaviour
         else if (choice == 2)
         {
             //dialogue for choice 2
+            wickham.emotion = 1;
             characterBox.text = "Mr. Wickham"; //Closed
             textController.say("Two hundred thousand dollars. No more, no less.");
             yield return null;
+            wickham.emotion = 0;
 
             characterBox.text = "Mr. Darcy"; //Angry
             textController.say("One hundred and fifty thousand.");
             yield return null;
 
+            wickham.emotion = 1;
             characterBox.text = "Mr. Wickham"; //Closed
             textController.say("Two hundred thousand dollars. No more, no less.");
             yield return null;
+            wickham.emotion = 0;
 
             characterBox.text = "Mr. Darcy"; //Annoyed
             textController.say("*Sigh* Fine, a lot people were already gossiping. At least marriage will stop that.");
@@ -1504,27 +1659,35 @@ public class SpeechBoxController : MonoBehaviour
         else
         {
             //dialogue for choice 3
+            wickham.emotion = 1;
             characterBox.text = "Mr. Wickham"; //Closed
             textController.say("Hmmm...That's' tough. I do like Pewdiepie, but I'm going to have to go with the money.");
             yield return null;
+            wickham.emotion = 0;
 
             characterBox.text = "Mr. Darcy"; //Annoyed
             textController.say("*Sigh* Fine, a lot people were already gossiping. At least marriage will stop that.");
             yield return null;
         }
 
+        lydia.emotion = 0;
         characterBox.text = "Lydia Bennet"; //Smiling
         textController.say("Oh my god, Wickham you're so smart. I can't believe Darcy was dumb enough to give you the money even though you were going to marry me anyways.");
         yield return null;
+        lydia.emotion = 3;
 
+        wickham.emotion = 3;
         characterBox.text = "Mr. Wickham"; //Grinning
         textController.say("Yes darling. You're exactly right.");
         yield return null;
+        wickham.emotion = 2;
 
         characterBox.text = "Mr. Darcy"; //Annoyed
         textController.say("Well, now that this situation is over with. Let us have you two get married and move on with our lives.");
         yield return null;
         //Bad flute wedding music
+        wickham.gameObject.SetActive(false);
+        lydia.gameObject.SetActive(false);
 
         //BEVERLY HILLS STREET
         backgroundImageController.location = 2;
@@ -1532,26 +1695,35 @@ public class SpeechBoxController : MonoBehaviour
         textController.say("Bingley, I finally found you!");
         yield return null;
 
+        mrBingley.gameObject.SetActive(true);
+        mrBingley.currentView = "street";
+        mrBingley.emotion = 5;
+
         characterBox.text = "Mr. Bingley"; //Sad
         textController.say("What is it Darcy? Have you come to tell me I am wrong with another choice in my life as well?");
         yield return null;
+        mrBingley.emotion = 4;
 
         characterBox.text = "Mr. Darcy"; //Desperate
         textController.say("No, Bingley, you must understand. I was wrong before. I now realize how entrancing that situation was for you.");
         yield return null;
 
+        mrBingley.emotion = 7;
         characterBox.text = "Mr. Bingley"; //Smiling
         textController.say("You do?");
         yield return null;
+        mrBingley.emotion = 6;
 
         characterBox.text = "Mr. Darcy"; //Embarrassed
         textController.say("Yes, and that's why you need to go back to Cupertino right now and propose to her.");
         yield return null;
 
+        mrBingley.emotion = 7;
         characterBox.text = "Mr. Bingley"; //Smiling
         textController.say("But I literally have nothing prepared to propose to her. What would I do?");
         yield return null;
-        
+        mrBingley.emotion = 6;
+
         choiceController.offerChoices("Sneak up behind hear, cover her eyes, and whisper in her ear 'You will marry me.'", "Tell her how you sincerely feel and propose to her. I am sure she will accept.", "Tell her you have a special surprise set up in another location. Ask her to cover her eyes and then ditch her.");
         choosing = true;
         yield return null;
@@ -1559,9 +1731,11 @@ public class SpeechBoxController : MonoBehaviour
         if (choice == 1)
         {
             //dialogue for choice 1
+            mrBingley.emotion = 1;
             characterBox.text = "Mr. Bingley"; //Confused
             textController.say("Isn't that inappropriate for this situation?");
             yield return null;
+            mrBingley.emotion = 0;
 
             characterBox.text = "Mr. Darcy"; //Normal
             textController.say("*Sigh* Fine. Go about it the normal way then. Give her the whole clich' speech about emotions and then get down on your knees and say the normal phrase.");
@@ -1575,28 +1749,38 @@ public class SpeechBoxController : MonoBehaviour
         else
         {
             //dialogue for choice 3
+            mrBingley.emotion = 1;
             characterBox.text = "Mr. Bingley"; //Confused
             textController.say("Wait... why would I do that when I want to marry her?");
             yield return null;
+            mrBingley.emotion = 0;
 
             characterBox.text = "Mr. Darcy"; //Normal
             textController.say("*Sigh* Fine. Go about it the normal way then. Give her the whole clich' speech about emotions and then get down on your knees and say the normal phrase.");
             yield return null;
         }
 
+        mrBingley.emotion = 7;
         characterBox.text = "Mr. Bingley"; //Smiling
         textController.say("Thank you! Thank you so much Darcy! I'm so happy. Oh my god, I'm going to tell everyone about this on my Tweeter and Snapstagram.");
         yield return null;
+        mrBingley.emotion = 6;
 
         characterBox.text = "Mr. Darcy"; //Smiling
         textController.say("We should fly there now. I believe in you.");
         yield return null;
 
+        mrBingley.gameObject.SetActive(false);
+
         //BENNET HOME
         backgroundImageController.location = 0;
+        mrBennet.gameObject.SetActive(true);
+        mrBennet.currentView = "home";
+        mrBennet.emotion = 1;
         characterBox.text = "Mr. Bennet"; //Cold
         textController.say("What can I do you for Mr. Darcy?");
         yield return null;
+        mrBennet.emotion = 0;
 
         characterBox.text = "Mr. Darcy"; //Nervous
         textController.say("Umm...");
@@ -1606,9 +1790,11 @@ public class SpeechBoxController : MonoBehaviour
         textController.say("I have something to tell you...");
         yield return null;
 
+        mrBennet.emotion = 1;
         characterBox.text = "Mr. Bennet"; //Cold
         textController.say("What is it?");
         yield return null;
+        mrBennet.emotion = 0;
 
         characterBox.text = "Mr. Darcy"; //Nervous
         textController.say("Well...");
@@ -1618,14 +1804,17 @@ public class SpeechBoxController : MonoBehaviour
         textController.say("I would like to ask for your daughter's hand in marriage.");
         yield return null;
 
+        mrBennet.emotion = 5;
         characterBox.text = "Mr. Bennet"; //Resigned
         textController.say("*Sighs* Ultimately, I realize you are a powerful man and that you will provide well for my daughter. The issue is though, that your personality is a bit of a bother to me and I am not completely sure that you will make my daughter happy. In the end though, the choice comes down to Elizabeth. It's 2019 and women have the right to choose for themselves.");
         yield return null;
+        mrBennet.emotion = 4;
 
         characterBox.text = "Mr. Darcy"; //Smiling
         textController.say("Please ask your daughter then Mr. Bennet. I'm sure you will be amazed.");
         yield return null;
 
+        mrBennet.emotion = 3;
         characterBox.text = "Mr. Bennet"; //Confused
         textController.say("Alright. Please wait outside.");
         yield return null;
@@ -1633,14 +1822,20 @@ public class SpeechBoxController : MonoBehaviour
         characterBox.text = "Mr. Bennet"; //Confused
         textController.say("Elizabeth!");
         yield return null;
+        mrBennet.emotion = 2;
+
+        mrBennet.gameObject.SetActive(false);
 
         //CUPERTINO STREET
         backgroundImageController.location = 3;
         //On screen is Mr. Bingley
-
+        mrBingley.gameObject.SetActive(true);
+        mrBingley.currentView = "street";
+        mrBingley.emotion = 3;
         characterBox.text = "Mr. Bingley"; //Nervous
         textController.say("I'm really nervous...what if she says no?");
         yield return null;
+        mrBingley.emotion = 2;
 
         characterBox.text = "Mr. Darcy"; //Normal
         textController.say("I am sure that you will do great. You always had natural charm...In addition, why would she say no? She is in love...");
@@ -1650,33 +1845,48 @@ public class SpeechBoxController : MonoBehaviour
         textController.say("And you have over 135 million people following you on Snapstagram.");
         yield return null;
 
+        mrBingley.emotion = 1;
         characterBox.text = "Mr. Bingley"; //Less Nervous
         textController.say("I wish I had your confidence.");
         yield return null;
+        mrBingley.emotion = 0;
 
         characterBox.text = "Mr. Darcy"; //Normal
         textController.say("Just stick to the plan: Elizabeth and I are to separate off from the two of you, then you must get down on your knee and propose. How simple could it be?");
         yield return null;
 
+        mrBingley.emotion = 3;
         characterBox.text = "Mr. Bingley"; //Nervous
         textController.say("Here they come! Wish me luck!");
         yield return null;
+        mrBingley.emotion = 2;
 
         //Elizabeth and Jane Enter
+        elizabeth.gameObject.SetActive(true);
+        jane.gameObject.SetActive(true);
+        elizabeth.currentView = "street";
+        jane.currentView = "street";
+        elizabeth.emotion = 0;
+        jane.emotion = 2;
         //Rose filter on Elizabeth
         characterBox.text = "Darcy Thoughts"; //Blushing
         characterBox.fontStyle = FontStyle.Italic;
         textController.think("As beautiful as ever...Maybe Bingley will not be the only one proposing tonight...");
         yield return null;
 
+        mrBingley.emotion = 6;
+        jane.emotion = 1;
         characterBox.text = "Jane Bennet"; //Curious
         characterBox.fontStyle = FontStyle.Normal;
         textController.say("Hey guys! How's it going?");
         yield return null;
+        jane.emotion = 0;
 
+        mrBingley.emotion = 7;
         characterBox.text = "Mr. Bingley"; //Smiling
         textController.say("It's going really well, thank you for asking...hrrm HRRRMHMHM...");
         yield return null;
+        mrBingley.emotion = 6;
 
         characterBox.text = "Darcy Thoughts"; //Normal
         characterBox.fontStyle = FontStyle.Italic;
@@ -1688,9 +1898,11 @@ public class SpeechBoxController : MonoBehaviour
         textController.say("Miss Elizabeth Bennet, may I speak with you for a second?");
         yield return null;
 
+        elizabeth.emotion = 1;
         characterBox.text = "Elizabeth Bennet"; //Normal
         textController.say("Sure~");
         yield return null;
+        elizabeth.emotion = 0;
 
         characterBox.text = "Darcy Thoughts"; //Smiling
         characterBox.fontStyle = FontStyle.Italic;
@@ -1702,6 +1914,8 @@ public class SpeechBoxController : MonoBehaviour
         textController.say("Right this way.");
         yield return null;
         //Bingley and Jane leave
+        mrBingley.gameObject.SetActive(false);
+        jane.gameObject.SetActive(false);
 
         characterBox.text = "Mr. Darcy"; //Normal
         textController.say("Miss Elizabeth Bennet, not long ago I proposed to you and told you how much I loved you and now...");
@@ -1714,17 +1928,21 @@ public class SpeechBoxController : MonoBehaviour
         if (choice == 1)
         {
             //dialogue for choice 1
+            elizabeth.emotion = 5;
             characterBox.text = "Elizabeth Bennet"; //Confused
             textController.say("You don't even know my feelings right now.");
             yield return null;
+            elizabeth.emotion = 4;
 
             characterBox.text = "Mr. Darcy"; //Blushing
             textController.say("Sorry. When I get stressed I starting making random speculations that are not very important.");
             yield return null;
 
+            elizabeth.emotion = 5;
             characterBox.text = "Elizabeth Bennet"; //Confused
             textController.say("What are you stressed about?");
             yield return null;
+            elizabeth.emotion = 4;
 
             characterBox.text = "Mr. Darcy"; //Blushing
             textController.say("What I meant to say was my feelings over the last few months have not shifted at all. *Gets down on one knee* Will you marry me?");
@@ -1733,9 +1951,11 @@ public class SpeechBoxController : MonoBehaviour
         else if (choice == 2)
         {
             //dialogue for choice 2
+            elizabeth.emotion = 5;
             characterBox.text = "Elizabeth Bennet"; //Confused
             textController.say("About what?");
             yield return null;
+            elizabeth.emotion = 4;
 
             characterBox.text = "Mr. Darcy"; //Blushing
             textController.say("About how my feelings over the last few months have not shifted at all and what to say in a proposal.");
@@ -1750,6 +1970,8 @@ public class SpeechBoxController : MonoBehaviour
             //dialogue for choice 3
             yield return null;
         }
+
+        elizabeth.emotion = 19;
         characterBox.text = "Elizabeth Bennet"; //BlushingCrying
         textController.say("*Gasp* Wow! Ummm...");
         yield return null;
@@ -1769,7 +1991,8 @@ public class SpeechBoxController : MonoBehaviour
         characterBox.text = "Elizabeth Bennet"; //BlushingCrying
         textController.say("Of course I'll marry you!");
         yield return null;
+        elizabeth.emotion = 18;
 
-        //Roll Credits, Here comes the bride music in Las Vegas Church background
+        //Roll Credits, Here comes the bride music
     }
 }

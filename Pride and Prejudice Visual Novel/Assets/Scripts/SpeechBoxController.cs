@@ -964,7 +964,7 @@ public class SpeechBoxController : MonoBehaviour
         //Elizabeth gets smaller
         elizabeth.scale = (int) scale / 3;
         effectController.stopRoseFilter();
-        elizabeth.scale = (int)(1.1 * scale / 3);
+        elizabeth.scale = (int)(scale / 3);
         characterBox.text = "Mr. Darcy"; //Awkward
         textController.say("...Uh...yes");
         yield return null;
@@ -1217,7 +1217,7 @@ public class SpeechBoxController : MonoBehaviour
         textController.think("Why is she still so beautiful after all these months? WHY?");
         yield return null;
         effectController.stopRoseFilter();
-        elizabeth.scale = (int)(1.1 * scale / 3);
+        elizabeth.scale = (int)(scale / 3);
         characterBox.text = "Mr. Darcy"; //Normal
         characterBox.fontStyle = FontStyle.Normal;
         textController.say("Hello Aunt Catherine.");
@@ -1456,7 +1456,7 @@ public class SpeechBoxController : MonoBehaviour
         textController.think("She's here. Oh my god, please have a favorable response.");
         yield return null;
         effectController.stopRoseFilter();
-        elizabeth.scale = (int)(1.1 * scale / 3);
+        elizabeth.scale = (int)(scale / 3);
         characterBox.text = "Mr. Darcy"; //Normal
         characterBox.fontStyle = FontStyle.Normal;
         textController.say("Hello Miss Elizabeth. A pleasure as always. And who is this respectable man?");
@@ -1544,7 +1544,7 @@ public class SpeechBoxController : MonoBehaviour
         textController.say("*Looks away* No problem.");
         yield return null;
         effectController.stopRoseFilter();
-        elizabeth.scale = (int)(1.1 * scale / 3);
+        elizabeth.scale = (int)(scale / 3);
         elizabeth.gameObject.SetActive(false);
 
         //LIVING ROOM
@@ -2040,7 +2040,7 @@ public class SpeechBoxController : MonoBehaviour
         textController.think("As beautiful as ever...Maybe Bingley will not be the only one proposing tonight...");
         yield return null;
         effectController.stopRoseFilter();
-        elizabeth.scale = (int)(1.1 * scale / 3);
+        elizabeth.scale = (int)(scale / 3);
 
         mrBingley.emotion = 6;
         jane.emotion = 1;
@@ -2165,32 +2165,5 @@ public class SpeechBoxController : MonoBehaviour
         elizabeth.emotion = 18;
 
         //Roll Credits, Here comes the bride music
-        characterBox.text = "Elizabeth Bennet"; //BlushingCrying
-        textController.say("This game was coded by Myles O'Leary and Gautam Pakala!");
-        yield return null;
-
-        characterBox.text = "Mr. Darcy"; //Blushing
-        textController.sayFastAdvance("um ... what are you talking about? ...", this.gameObject);
-        yield return null;
-
-        characterBox.text = "Elizabeth Bennet"; //BlushingCrying
-        textController.say("The script was written by Gautam Pakala and Myles O'Leary!");
-        yield return null;
-
-        characterBox.text = "Mr. Darcy"; //Blushing
-        textController.sayFastAdvance("Who are you talking to???", this.gameObject);
-        yield return null;
-
-        characterBox.text = "Elizabeth Bennet"; //BlushingCrying
-        textController.say("Characters were created thanks to BlackRoseMii, Character Design Models!");
-        yield return null;
-
-        characterBox.text = "Elizabeth Bennet"; //BlushingCrying
-        textController.say("The plot of this game was based on Pride and Prejudice by Jane Austen.");
-        yield return null;
-
-        characterBox.text = "Elizabeth Bennet"; //BlushingCrying
-        textController.say("Now, if you'll excuse me, I have a wedding to go to. \n:)");
-        yield return null;
     }
 }

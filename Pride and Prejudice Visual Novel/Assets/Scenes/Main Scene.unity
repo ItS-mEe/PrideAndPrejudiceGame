@@ -813,6 +813,7 @@ MonoBehaviour:
   choiceController: {fileID: 1304518550}
   parentOfCharacters: {fileID: 762179924}
   effectController: {fileID: 531309864}
+  email: {fileID: 971482677}
   catherinePrefab: {fileID: 774873655153092658, guid: d4228a60a55a24959ba924bd56e2e1e4,
     type: 3}
   elizabethPrefab: {fileID: 8245262777755956931, guid: 100c05b01f63147dd917d6517e6551b7,

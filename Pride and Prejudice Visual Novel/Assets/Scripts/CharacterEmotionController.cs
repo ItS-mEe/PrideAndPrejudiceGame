@@ -22,9 +22,6 @@ public class CharacterEmotionController : MonoBehaviour
                 _currentView = ballView;
             }
             _currentViewString = value;
-            print(_currentViewString);
-            print(homeView[5]);
-            print(_currentView[5]);
         }
     }
     private int _emotion;

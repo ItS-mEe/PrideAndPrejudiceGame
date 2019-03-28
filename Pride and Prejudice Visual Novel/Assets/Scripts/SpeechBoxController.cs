@@ -1281,12 +1281,12 @@ public class SpeechBoxController : MonoBehaviour
         //MALL
         effectController.fadeToBlack(this.gameObject); paused = true;
         yield return null;
-        elizabeth.gameObject.SetActive(true);
+        backgroundImageController.location = 12;
         yield return null;
 
+        elizabeth.gameObject.SetActive(true);
         elizabeth.currentView = "street";
         elizabeth.emotion = 10;
-        backgroundImageController.location = 12;
         //Sound of conversation
         characterBox.text = "Mr. Darcy"; //Normal
         textController.say("And this is the LA Great Mall. That is Forever 21 and that is H&M and that is...");
@@ -2165,5 +2165,34 @@ public class SpeechBoxController : MonoBehaviour
         elizabeth.emotion = 18;
 
         //Roll Credits, Here comes the bride music
+        characterBox.text = "Elizabeth Bennet"; //BlushingCrying
+        textController.say("This game was created by Myles O'Leary and Gautam Pakala!");
+
+        yield return null;
+
+        characterBox.text = "Darcy"; //BlushingCrying
+        textController.sayFastAdvance("... uh ... what? ...", this.gameObject);
+        
+        yield return null;
+
+        characterBox.text = "Elizabeth Bennet"; //BlushingCrying
+        textController.say("This game was based off the plot of Pride and Prejudice by Jane Austen.");
+        
+        yield return null;
+
+        characterBox.text = "Darcy"; //BlushingCrying
+        textController.sayFastAdvance("Who are you talking to???", this.gameObject);
+        
+        yield return null;
+
+        characterBox.text = "Elizabeth Bennet"; //BlushingCrying
+        textController.say("Character images were created using assets by BlackRoseMii, Character Design Models.");
+        
+        yield return null;
+
+        characterBox.text = "Elizabeth Bennet"; //BlushingCrying
+        textController.say("Now, if you don't mind, I have a wedding to attend.");
+        
+        yield return null;
     }
 }

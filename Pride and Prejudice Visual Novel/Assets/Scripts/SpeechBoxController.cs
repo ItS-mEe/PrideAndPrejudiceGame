@@ -93,10 +93,6 @@ public class SpeechBoxController : MonoBehaviour
         catherine .transform.SetParent(parentOfCharacters);
         ((catherine .transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
         catherine.scale = (int)(scale/3);
-        elizabeth .gameObject.SetActive(false);
-        elizabeth .transform.SetParent(parentOfCharacters);
-        ((elizabeth .transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
-        elizabeth.scale = (int) (scale/3);
         georgiana .gameObject.SetActive(false);
         georgiana .transform.SetParent(parentOfCharacters);
         ((georgiana .transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
@@ -137,6 +133,10 @@ public class SpeechBoxController : MonoBehaviour
         mrBennet  .transform.SetParent(parentOfCharacters);
         ((mrBennet  .transform) as RectTransform ).anchoredPosition = new Vector3(0, -30, 0);
         mrBennet.scale = (int)(scale /3);
+        elizabeth.gameObject.SetActive(false);
+        elizabeth.transform.SetParent(parentOfCharacters);
+        ((elizabeth.transform) as RectTransform).anchoredPosition = new Vector3(0, -30, 0);
+        elizabeth.scale = (int)(scale / 3);
 
         // Mr Bingley asks Mr Darcy to go with him to the party
         MonoBehaviour.print(Screen.height);
@@ -325,6 +325,9 @@ public class SpeechBoxController : MonoBehaviour
         //Chatting continues. Jane and Elizabeth leave.
         elizabeth.gameObject.SetActive(false);
         jane.gameObject.SetActive(false);
+        ((elizabeth.transform) as RectTransform).anchoredPosition = new Vector3(0, -30, 0);
+        ((jane.transform) as RectTransform).anchoredPosition = new Vector3(0, -30, 0);
+        ((mrBingley.transform) as RectTransform).anchoredPosition = new Vector3(0, -30, 0);
 
         mrBingley.emotion = 1;
         characterBox.text = "Mr. Bingley"; //Concerned
@@ -351,6 +354,8 @@ public class SpeechBoxController : MonoBehaviour
         textController.say("Yes she was really pretty... Anyways, I still think you're delusional buddy. What about her sister Elizabeth? She was nice.");
         yield return null;
         //Show Elizabeth (Normal)
+        elizabeth.scale = (int)(scale / 5);
+        ((elizabeth.transform) as RectTransform).anchoredPosition = new Vector3(-500, -165, 0);
         elizabeth.gameObject.SetActive(true);
         elizabeth.currentView = "ball";
         elizabeth.emotion = 9;
@@ -361,31 +366,41 @@ public class SpeechBoxController : MonoBehaviour
         yield return null;
         //Elizabeth Angry Expression
         elizabeth.gameObject.SetActive(false);
+        ((elizabeth.transform) as RectTransform).anchoredPosition = new Vector3(0, -30, 0);
+        elizabeth.scale = (int)(scale / 3);
         mrBingley.gameObject.SetActive(false);
 
-        //SOCIAL PARTY #2
+        //BLACK SCREEN
         effectController.fadeToBlack(this.gameObject); paused = true;
         yield return null;
 
+        characterBox.text = "Darcy Thoughts"; //Normal
+        characterBox.fontStyle = FontStyle.Italic;
+        textController.think("As time passed, my opinion of her slowly started to change");
         backgroundImageController.location = 14;
+        effectController.paused = true; this.paused = false;
         yield return null;
+
+        effectController.paused = false; this.paused = true;
+        yield return null;
+
+        //SOCIAL PARTY #2
         //Darcy (Content) sees Elizabeth laughing. Rose filter.
         effectController.startRoseFilter();
         elizabeth.gameObject.SetActive(true);
         elizabeth.currentView = "ball";
         elizabeth.emotion = 8;
         characterBox.text = "Darcy Thoughts"; //Weird
-        characterBox.fontStyle = FontStyle.Italic;
         textController.think("Wow, Mr. Bingley was right. Elizabeth is really pretty.");
         yield return null;
 
         effectController.stopRoseFilter();
+        elizabeth.gameObject.SetActive(false);
         msBingley.gameObject.SetActive(true);
         msBingley.currentView = "home";
         msBingley.emotion = 3;
         characterBox.text = "Miss Bingley"; //Annoyed
         characterBox.fontStyle = FontStyle.Normal;
-        elizabeth.gameObject.SetActive(false);
         textController.say("...rcy. Hey! Darcy! What's wrong with you?");
         yield return null;
         msBingley.emotion = 2;
@@ -588,6 +603,8 @@ public class SpeechBoxController : MonoBehaviour
         characterBox.text = "Miss Bingley"; //Bored
         textController.say("Elizabeth come here and talk me, I would like to get to know you better.");
         elizabeth.gameObject.SetActive(true);
+        ((elizabeth.transform) as RectTransform).anchoredPosition = new Vector3((int)(-0.15*scale), -30, 0);
+        ((msBingley.transform) as RectTransform).anchoredPosition = new Vector3((int)(0.15 * scale), -30, 0);
         elizabeth.currentView = "home";
         elizabeth.emotion = 0; 
         yield return null;
@@ -625,6 +642,8 @@ public class SpeechBoxController : MonoBehaviour
         //Mr. Bingley comes in
         msBingley.gameObject.SetActive(false);
         mrBingley.gameObject.SetActive(true);
+        ((msBingley.transform) as RectTransform).anchoredPosition = new Vector3(0, -30, 0);
+        ((mrBingley.transform) as RectTransform).anchoredPosition = new Vector3((int)(scale * 0.15), -30, 0);
         mrBingley.currentView = "home";
         mrBingley.emotion = 1;
         characterBox.text = "Mr. Bingley"; //Grinning
@@ -633,6 +652,9 @@ public class SpeechBoxController : MonoBehaviour
         mrBingley.emotion = 0;
 
         //Jane comes in
+        ((elizabeth.transform) as RectTransform).anchoredPosition = new Vector3(0, -30, 0);
+        ((jane.transform) as RectTransform).anchoredPosition = new Vector3((int)(-scale * 0.25), -30, 0);
+        ((mrBingley.transform) as RectTransform).anchoredPosition = new Vector3((int)(scale * 0.25), -30, 0);
         jane.gameObject.SetActive(true);
         jane.currentView = "ball";
         jane.emotion = 3;
@@ -656,6 +678,9 @@ public class SpeechBoxController : MonoBehaviour
         //Jane and Elizabeth leave
         jane.gameObject.SetActive(false);
         elizabeth.gameObject.SetActive(false);
+        ((elizabeth.transform) as RectTransform).anchoredPosition = new Vector3(0, -30, 0);
+        ((jane.transform) as RectTransform).anchoredPosition = new Vector3(0, -30, 0);
+        ((mrBingley.transform) as RectTransform).anchoredPosition = new Vector3(0, -30, 0);
 
         mrBingley.emotion = 5;
         characterBox.text = "Mr. Bingley"; //Smiling
@@ -684,6 +709,9 @@ public class SpeechBoxController : MonoBehaviour
         elizabeth.gameObject.SetActive(true);
         jane.gameObject.SetActive(true);
         wickham.gameObject.SetActive(true);
+        ((elizabeth.transform) as RectTransform).anchoredPosition = new Vector3(0, -30, 0);
+        ((jane.transform) as RectTransform).anchoredPosition = new Vector3((int)(scale * 0.25), -30, 0);
+        ((wickham.transform) as RectTransform).anchoredPosition = new Vector3((int)(-scale * 0.25), -30, 0);
         elizabeth.currentView = "street";
         jane.currentView = "street";
         wickham.currentView = "home";
@@ -774,6 +802,10 @@ public class SpeechBoxController : MonoBehaviour
         elizabeth.gameObject.SetActive(false);
         jane.gameObject.SetActive(false);
         wickham.gameObject.SetActive(false);
+        ((elizabeth.transform) as RectTransform).anchoredPosition = new Vector3(0, -30, 0);
+        ((jane.transform) as RectTransform).anchoredPosition = new Vector3(0, -30, 0);
+        ((wickham.transform) as RectTransform).anchoredPosition = new Vector3(0, -30, 0);
+
         //SOCIAL PARTY #3
         effectController.fadeToBlack(this.gameObject); paused = true;
         yield return null;
@@ -1161,6 +1193,8 @@ public class SpeechBoxController : MonoBehaviour
         textController.think("Hold on...is that the girl from two months ago...Elizabeth...");
         yield return null;
         //Show Elizabeth and Catherine de Bourgh
+        ((catherine.transform) as RectTransform).anchoredPosition = new Vector3((int)(scale *0.15), -30, 0);
+        ((elizabeth.transform) as RectTransform).anchoredPosition = new Vector3((int)(-scale * 0.15), -30, 0);
         elizabeth.gameObject.SetActive(true);
         catherine.gameObject.SetActive(true);
         elizabeth.currentView = "street";
@@ -1229,6 +1263,9 @@ public class SpeechBoxController : MonoBehaviour
 
         elizabeth.gameObject.SetActive(false);
         catherine.gameObject.SetActive(false);
+        ((catherine.transform) as RectTransform).anchoredPosition = new Vector3(0, -30, 0);
+        ((elizabeth.transform) as RectTransform).anchoredPosition = new Vector3(0, -30, 0);
+
 
         //MALL
         effectController.fadeToBlack(this.gameObject); paused = true;
@@ -1383,6 +1420,9 @@ public class SpeechBoxController : MonoBehaviour
         //Show Elizabeth and Mr. Gardiner
         elizabeth.gameObject.SetActive(true);
         mrGardiner.gameObject.SetActive(true);
+        ((mrGardiner.transform) as RectTransform).anchoredPosition = new Vector3((int)(scale * 0.25), -30, 0);
+        ((elizabeth.transform) as RectTransform).anchoredPosition = new Vector3(0, -30, 0);
+        ((georgiana.transform) as RectTransform).anchoredPosition = new Vector3((int)(-scale * 0.25), -30, 0);
         elizabeth.currentView = "street";
         mrGardiner.currentView = "home";
         elizabeth.emotion = 16;
@@ -1445,6 +1485,9 @@ public class SpeechBoxController : MonoBehaviour
         elizabeth.gameObject.SetActive(false);
         mrGardiner.gameObject.SetActive(false);
         georgiana.gameObject.SetActive(false);
+        ((mrGardiner.transform) as RectTransform).anchoredPosition = new Vector3(0, -30, 0);
+        ((elizabeth.transform) as RectTransform).anchoredPosition = new Vector3(0, -30, 0);
+        ((georgiana.transform) as RectTransform).anchoredPosition = new Vector3(0, -30, 0);
 
         //DINNER SCENE
         effectController.fadeToBlack(this.gameObject); paused = true;
@@ -1653,6 +1696,8 @@ public class SpeechBoxController : MonoBehaviour
         backgroundImageController.location = 10;
         yield return null;
 
+        ((wickham.transform) as RectTransform).anchoredPosition = new Vector3((int)(scale * 0.15), -30, 0);
+        ((lydia.transform) as RectTransform).anchoredPosition = new Vector3((int)(-scale * 0.15), -30, 0);
         wickham.gameObject.SetActive(true);
         lydia.gameObject.SetActive(true);
         wickham.currentView = "home";
@@ -1771,6 +1816,8 @@ public class SpeechBoxController : MonoBehaviour
         //Bad flute wedding music
         wickham.gameObject.SetActive(false);
         lydia.gameObject.SetActive(false);
+        ((wickham.transform) as RectTransform).anchoredPosition = new Vector3((int)(scale * 0.15), -30, 0);
+        ((lydia.transform) as RectTransform).anchoredPosition = new Vector3((int)(-scale * 0.15), -30, 0);
 
         //BEVERLY HILLS STREET
         effectController.fadeToBlack(this.gameObject); paused = true;
@@ -1957,6 +2004,9 @@ public class SpeechBoxController : MonoBehaviour
         mrBingley.emotion = 2;
 
         //Elizabeth and Jane Enter
+        ((jane.transform) as RectTransform).anchoredPosition = new Vector3((int)(scale * 0.25), -30, 0);
+        ((elizabeth.transform) as RectTransform).anchoredPosition = new Vector3(0, -30, 0);
+        ((mrBingley.transform) as RectTransform).anchoredPosition = new Vector3((int)(-scale * 0.25), -30, 0);
         elizabeth.gameObject.SetActive(true);
         jane.gameObject.SetActive(true);
         elizabeth.currentView = "street";
@@ -2013,6 +2063,9 @@ public class SpeechBoxController : MonoBehaviour
         //Bingley and Jane leave
         mrBingley.gameObject.SetActive(false);
         jane.gameObject.SetActive(false);
+        ((jane.transform) as RectTransform).anchoredPosition = new Vector3(0, -30, 0);
+        ((elizabeth.transform) as RectTransform).anchoredPosition = new Vector3(0, -30, 0);
+        ((mrBingley.transform) as RectTransform).anchoredPosition = new Vector3(0, -30, 0);
 
         characterBox.text = "Mr. Darcy"; //Normal
         textController.say("Miss Elizabeth Bennet, not long ago I proposed to you and told you how much I loved you and now...");

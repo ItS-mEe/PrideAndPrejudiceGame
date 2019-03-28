@@ -7,6 +7,7 @@ public class EffectController : MonoBehaviour
 {
 
     Image img;
+    public bool paused = false;
 
     void Start()
     {
@@ -23,20 +24,21 @@ public class EffectController : MonoBehaviour
 
         while(img.color.a*255 < 255-rate){
             img.color = new Color32(0, 0, 0, (byte)(img.color.a*255 + rate));
-            yield return null;
+            yield return new WaitForSeconds(0.01f);
         }
 
         img.color = new Color32(0, 0, 0, 255);
         toNotify.SendMessage("midTransition");
         yield return new WaitForSeconds(0.5f);
+        while(paused) yield return null;
 
         while(img.color.a*255 > rate){
             img.color = new Color32(0, 0, 0, (byte)(img.color.a*255 - rate));
-            yield return null;
+            yield return new WaitForSeconds(0.01f);
         }
 
         img.color = new Color32(0, 0, 0, 0);
-        yield return null;
+        yield return new WaitForSeconds(0.01f);
 
         toNotify.SendMessage("transitionDone");
     }
@@ -50,7 +52,7 @@ public class EffectController : MonoBehaviour
 
         while(img.color.a*255 < 100-rate){
             img.color = new Color32(255,182,193,(byte)(img.color.a*255 + rate));
-            yield return null;
+            yield return new WaitForSeconds(0.01f);
         }
 
         img.color = new Color32(255,182,193,100);

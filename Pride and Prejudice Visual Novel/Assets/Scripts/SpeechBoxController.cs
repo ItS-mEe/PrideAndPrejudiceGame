@@ -200,7 +200,7 @@ public class SpeechBoxController : MonoBehaviour
         mrBingley.gameObject.SetActive(false);
 
         // SOCIAL PARTY #1
-        effectController.fadeToBlack(this.gameObject);
+        effectController.fadeToBlack(this.gameObject); paused = true;
         yield return null;
 
         backgroundImageController.location = 13;
@@ -361,7 +361,7 @@ public class SpeechBoxController : MonoBehaviour
         mrBingley.gameObject.SetActive(false);
 
         //SOCIAL PARTY #2
-        effectController.fadeToBlack(this.gameObject);
+        effectController.fadeToBlack(this.gameObject); paused = true;
         yield return null;
 
         backgroundImageController.location = 14;
@@ -458,7 +458,7 @@ public class SpeechBoxController : MonoBehaviour
 
         msBingley.gameObject.SetActive(false);
         //HOTEL
-        effectController.fadeToBlack(this.gameObject);
+        effectController.fadeToBlack(this.gameObject); paused = true;
         yield return null;
         backgroundImageController.location = 9;
         yield return null;
@@ -555,7 +555,7 @@ public class SpeechBoxController : MonoBehaviour
         elizabeth.gameObject.SetActive(false);
 
         //DARCY'S ROOM
-        effectController.fadeToBlack(this.gameObject);
+        effectController.fadeToBlack(this.gameObject); paused = true;
         yield return null;
         backgroundImageController.location = 4;
         yield return null;
@@ -565,7 +565,7 @@ public class SpeechBoxController : MonoBehaviour
         yield return null;
 
         //HOTEL
-        effectController.fadeToBlack(this.gameObject);
+        effectController.fadeToBlack(this.gameObject); paused = true;
         yield return null;
         backgroundImageController.location = 9;
         yield return null;
@@ -667,7 +667,7 @@ public class SpeechBoxController : MonoBehaviour
 
         //Scene cut. Fade to black.
         //GYM
-        effectController.fadeToBlack(this.gameObject);
+        effectController.fadeToBlack(this.gameObject); paused = true;
         yield return null;
         backgroundImageController.location = 8;
         yield return null;
@@ -772,7 +772,7 @@ public class SpeechBoxController : MonoBehaviour
         jane.gameObject.SetActive(false);
         wickham.gameObject.SetActive(false);
         //SOCIAL PARTY #3
-        effectController.fadeToBlack(this.gameObject);
+        effectController.fadeToBlack(this.gameObject); paused = true;
         yield return null;
         backgroundImageController.location = 15;
         yield return null;
@@ -1031,7 +1031,7 @@ public class SpeechBoxController : MonoBehaviour
         mrsBennet.gameObject.SetActive(false);
 
         //DARCY HOTEL ROOM
-        effectController.fadeToBlack(this.gameObject);
+        effectController.fadeToBlack(this.gameObject); paused = true;
         yield return null;
         backgroundImageController.location = 4;
         yield return null;
@@ -1144,7 +1144,7 @@ public class SpeechBoxController : MonoBehaviour
         mrBingley.gameObject.SetActive(false);
 
         //UPTOWN LA
-        effectController.fadeToBlack(this.gameObject);
+        effectController.fadeToBlack(this.gameObject); paused = true;
         yield return null;
         backgroundImageController.location = 5;
         yield return null;
@@ -1228,7 +1228,7 @@ public class SpeechBoxController : MonoBehaviour
         catherine.gameObject.SetActive(false);
 
         //MALL
-        effectController.fadeToBlack(this.gameObject);
+        effectController.fadeToBlack(this.gameObject); paused = true;
         yield return null;
         elizabeth.gameObject.SetActive(true);
         yield return null;
@@ -1329,7 +1329,7 @@ public class SpeechBoxController : MonoBehaviour
         elizabeth.gameObject.SetActive(false);
 
         //DARCY'S ROOM
-        effectController.fadeToBlack(this.gameObject);
+        effectController.fadeToBlack(this.gameObject); paused = true;
         yield return null;
         backgroundImageController.location = 4; //TODO change this
         yield return null;
@@ -1345,7 +1345,7 @@ public class SpeechBoxController : MonoBehaviour
         yield return null;
 
         //BEVERLY HILLS MANSION
-        effectController.fadeToBlack(this.gameObject);
+        effectController.fadeToBlack(this.gameObject); paused = true;
         yield return null;
         backgroundImageController.location = 1;
         yield return null;
@@ -1444,7 +1444,7 @@ public class SpeechBoxController : MonoBehaviour
         georgiana.gameObject.SetActive(false);
 
         //DINNER SCENE
-        effectController.fadeToBlack(this.gameObject);
+        effectController.fadeToBlack(this.gameObject); paused = true;
         yield return null;
         backgroundImageController.location = 6;
         yield return null;
@@ -1483,7 +1483,7 @@ public class SpeechBoxController : MonoBehaviour
         elizabeth.gameObject.SetActive(false);
 
         //LIVING ROOM
-        effectController.fadeToBlack(this.gameObject);
+        effectController.fadeToBlack(this.gameObject); paused = true;
         yield return null;
         backgroundImageController.location = 11;
         yield return null;
@@ -1529,7 +1529,7 @@ public class SpeechBoxController : MonoBehaviour
         msBingley.gameObject.SetActive(false);
 
         //ELIZABETH'S ROOM
-        effectController.fadeToBlack(this.gameObject);
+        effectController.fadeToBlack(this.gameObject); paused = true;
         yield return null;
         backgroundImageController.location = 7;
         yield return null;
@@ -1645,7 +1645,7 @@ public class SpeechBoxController : MonoBehaviour
         elizabeth.gameObject.SetActive(false);
 
         //LAS VEGAS
-        effectController.fadeToBlack(this.gameObject);
+        effectController.fadeToBlack(this.gameObject); paused = true;
         yield return null;
         backgroundImageController.location = 10;
         yield return null;
@@ -1770,7 +1770,7 @@ public class SpeechBoxController : MonoBehaviour
         lydia.gameObject.SetActive(false);
 
         //BEVERLY HILLS STREET
-        effectController.fadeToBlack(this.gameObject);
+        effectController.fadeToBlack(this.gameObject); paused = true;
         yield return null;
         backgroundImageController.location = 2;
         yield return null;
@@ -1857,7 +1857,7 @@ public class SpeechBoxController : MonoBehaviour
         mrBingley.gameObject.SetActive(false);
 
         //BENNET HOME
-        effectController.fadeToBlack(this.gameObject);
+        effectController.fadeToBlack(this.gameObject); paused = true;
         yield return null;
         backgroundImageController.location = 0;
         yield return null;
@@ -1915,7 +1915,7 @@ public class SpeechBoxController : MonoBehaviour
         mrBennet.gameObject.SetActive(false);
 
         //CUPERTINO STREET
-        effectController.fadeToBlack(this.gameObject);
+        effectController.fadeToBlack(this.gameObject); paused = true;
         yield return null;
         backgroundImageController.location = 3;
         yield return null;
